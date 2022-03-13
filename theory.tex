@@ -1,0 +1,127 @@
+\anonsection{Теоретическая часть}
+\anonsubsection{Задача синтеза управлений при неопределенности}
+
+Рассмотрим систему
+\begin{equation}\label{problem}
+    \dot{x} = A(t)x + B(t)u + C(t)v(t)
+\end{equation}
+с непрерывными матрицами \( A(t), B(t), C(t) \). Где \( x \in \mathbb{R}^n \)
+ --- \emph{вектор состояния} системы; \( u \in \mathbb{R}^p \) --- 
+ \emph{управление}, \( v \in \mathbb{R}^q \) --- \emph{внешнее возмущение},
+ стесненные почти всюду по \( t \) некоторыми "геометрическимио" ограничениями
+\[
+    u(t) \in \mathcal{P}(t), \quad v(t) \in \mathcal{Q}(t),
+\]
+ где \( \mathcal{P}(t) \) и \( \mathcal{Q}(t) \) --- заданные многозначные
+ функции с выпуклыми компактными значениями, непрерывно зависящие от времени. 
+Управление может быть выбрано в одном из двух классов:
+\begin{itemize}
+    \item в классе \( U \) программных управлений u = u(t) --- измеримых по
+     Лебегу функций со значениями в \( \mathcal{P}(t) \) почти всюду.
+    \item в классе \( U_\mathcal{P} \) позиционных управлений, представляющих
+     собой многозначные функции \( \mathcal{U}(t,x) \subseteq
+     \mathcal{P}(t) \). При этом выполнены условия существования и
+     продолжаемости решения дифференциального включения
+    \begin{equation}\label{dif_inclusion}
+        \dot{x} \in A(t)x + B(t)\mathcal{U}(t,x) + C(t)v(t), \quad
+         t_0 \le t \le t_1, 
+    \end{equation}
+    для любой измеримой по Лебегу функции \( v(t) \). \footnote{Примером класса
+     \( U_\mathcal{P} \) может служить класс всех непрерывных по \( t \) и
+     полунепрерывных сверху по \( x \) многозначных отображений с выпуклыми
+     компактными значениями. В этом случае дифференциальное включение имеет
+     решение на всем отрезке времени для произвольного \( x^0 = x(t_0) \),
+     то есть существует абсолютно непрерывная функция \( x(t) \),
+     удовлетворяющая дифференциальному включению почти всюду.[ссылка на
+     доказательство леммы филлипова(например)]} В этой работе речь пойдет 
+     именно про этот тип управлений.
+\end{itemize}
+Важно отметить, что в задачах с неопределенностью эти два типа управлений
+ существенно не взимозаменямы. Имея позиционное управление, подстановкой его
+ и решением задачи относительно \( u(t) \), уже нельзя однозначно найти
+ программный аналог.
+
+Пусть задано "целевое" множество \( \mathcal{M} \in \text{comp} \, \mathbb{R}^n \).
+Задача \emph{о синтезе управления при неопределенности} состоит в отыскании
+ \emph{множества разрешимости} \( \mathcal{W}^*(\tau, t_1, \mathcal{M}) = 
+ \mathcal{W}^*[\tau] \) и \emph{позиционной стратегией управления}
+ \( \mathcal{U}(t,x) \in U_{\mathcal{P}} \) таких, что все решения
+ \eqref{dif_inclusion}, выпущенные из любой начальной позиции \( \{\tau, 
+ x_{\tau}\}, \, x_{\tau} = x(\tau), \, x_{\tau} \in \mathcal{W}^*(\tau, t_1, 
+ \mathcal{M}), \, \tau \in [t_0, t_1) \), достигали бы \emph{целевого множества}
+ \( \mathcal{M} \) в момент времени \( t_1 \) при любом внешнем возмущени
+ \( v(t) \in \mathcal{Q}(t) \). 
+
+Задача имеет смысл в случае \( \mathcal{W}^*(\tau, t_1, \mathcal{M}) \ne 
+ \varnothing \). Многозначная функция \( \mathcal{W}[t] = \mathcal{W}(t, 
+ t_1,\mathcal{M}) \) называется \emph{трубкой разрешимости} или 
+ \emph{мостом Красовского}, и является ключевым элементом в решении задачи.
+ Существенным обстоятельством является возможность вычислить эту функцию 
+ при помощи некоторого многозначного инетграла --- \emph{альтернированного 
+ интеграла Л.С. Понтрягина}.
+
+\anonsubsection{Альтернированный интеграл Понтрягина}
+Напомним определение этого интеграла. Для этого приведем вначале систему 
+ \eqref{problem} к более простому виду
+\begin{equation}\label{simplified_problem}
+    \dot{x} = u + v
+\end{equation}
+ с новыми ограничениями
+\begin{equation}\label{simplified_bounds}
+    u \in \mathcal{P}_0(t), \quad v \in \mathcal{Q}_0(t),
+\end{equation}
+ где \( \mathcal{P}_0(t) = G(t_1, t) B(t) \mathcal{P}(t), \, \mathcal{Q}_0 = 
+ G(t_1,t)C(t)\mathcal{Q}(t) \) и \( G(t,t_1) \) --- фундаментальная матрица
+ однородного уравнения \eqref{problem}. Для этого сделаем невырожденную замену 
+ \( x(t) = G(t_1, t)x(t) \). Далее вместо \eqref{problem} будем
+ рассматривать \eqref{simplified_problem} с ограничениями \eqref{simplified_bounds}, 
+ опуская индекс нуль.
+\begin{definition}
+    Множеством разрешимости максиминного типа назовем множество
+    \begin{equation}\label{maxmin_solvability_set}
+        W[\tau] = W(\tau, t_1, \mathcal{M}) = \left\{ x: \, \max_v \min_u
+         d^2(x(t_1), \mathcal{M}) \le 0 \mid x(\tau) = x \right\}, 
+    \end{equation}
+     где \( d^2(x. \mathcal{M}) = \min\limits_z \{ (x-z,x-z) \mid z \in 
+     \mathcal{M} \} \) и \( x(t_1) \) --- конец в момент \( t_1 \) траектории
+     \( x(t) \) системы \eqref{simplified_problem}, выпущенной из положения 
+     \( x(\tau) = x \).
+\end{definition}
+\begin{statement}
+    Для \( W[t] \) справедливо представление:
+    \begin{equation}
+        W(t,t_1,\mathcal{M}) = \left( \mathcal{M} + \int\limits_t^{t_1} 
+         (-\mathcal{P}(t)) dt \right) \dot{-} \int\limits_t^{t_1} \mathcal{Q}(t) dt,
+         \quad \tau \le t \le t_1.
+    \end{equation}
+\end{statement}
+\begin{proof}
+    При заданных \( u \) и \( v \) значение на правом конце выражается как 
+    \[
+        x(t_1) = x(t) + \int\limits_t^{t_1}u(\tau)d\tau + \int\limits_t^{t_1}
+        v(\tau)d\tau.
+    \]
+    В таком случае множество разрешимости очевидно представляется в виде
+    \begin{multline*}
+        W(t, t_1, \mathcal{M}) = \bigcap\limits_{v \in \mathcal{Q}} 
+         \bigcup\limits_{u \in \mathcal{P}} \left\{ x : x = x(t_1)
+         -\int\limits_t^{t_1}u(\tau) d\tau - \int\limits_t^{t_1} v(\tau)
+         d\tau, \, x(t_1) \in \mathcal{M} \right\} \\
+        = \bigcap\limits_{v \in \mathcal{Q}} \bigcup\limits_{u \in 
+         \mathcal{P}} \left\{ \mathcal{M} - \int\limits_t^{t_1} u(\tau) d\tau
+         - \int\limits_t^{t_1} v(\tau) d\tau \right\} \\
+        = \bigcap\limits_{v \in \mathcal{Q}} \left\{ \mathcal{M} +
+         \int\limits_t^{t_1}(-\mathcal{P}(\tau)) d\tau - \int\limits_t^{t_1}
+         v(\tau) d\tau \right\} \\
+        = \left\{ x : x \in \left( \mathcal{M} + \int\limits_t^{t_1}(- \mathcal{P}
+         (\tau)) \right)  - \int\limits_t^{t_1} v(\tau) d\tau, \, \forall v(\tau)
+         \in \mathcal{Q}(\tau) \right\} \\
+        = \left\{ x : x + \int\limits_t^{t_1} v(\tau) d\tau \in \mathcal{M} + 
+         \int\limits_t^{t_1}(- \mathcal{P}(\tau)) d\tau, \, \forall v(\tau) \in
+         \mathcal{Q}(\tau) \right\} \\
+    \end{multline*}
+\end{proof}
+
+ 
+
+
