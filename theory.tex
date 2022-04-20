@@ -390,66 +390,72 @@
     \end{equation} \\
     3. Справедливо неравенство
     \begin{equation}
-        V^-(t,x) \le \min_u \max_v \{ V^-(t + \sigma, x(t + \sigma)) \mid x(t) = x \}, \quad \sigma > 0.
+        V^-(t,x) \le \min_u \max_v \{ V^-(t + \sigma, x(t + \sigma)) \mid x(t) = x \}, 
+         \quad \sigma > 0.
     \end{equation}
 \end{lemma}
 
-Подобно тому как альтернированный интеграл \( I(\tau, t_1, \mathcal{M}) \) является множеством уровня
- последовательного максимина, множество уровня последовательного минимакса также представляет собой
- некоторый многозначный интеграл. Определим его, для чего введем следующее
+Подобно тому как альтернированный интеграл \( I(\tau, t_1, \mathcal{M}) \) является
+ множеством уровня последовательного максимина, множество уровня последовательного минимакса
+ также представляет собой некоторый многозначный интеграл. Определим его, для чего введем
+ следующее
 \begin{definition}
-    Множество разрешимости \( W^-[\tau] \) минимаксоного типа называется следующая совокупность векторов
+    Множество разрешимости \( W^-[\tau] \) минимаксоного типа называется следующая совокупность
+     векторов
     \[
-        W_-[\tau] = W_-(\tau, t_1, \mathcal{M}) = \{ x : \min_u \max_v d^2(x(t_1), \mathcal{M}) \le 0 \mid
-         x(\tau) = x \}.
+        W_-[\tau] = W_-(\tau, t_1, \mathcal{M}) = \{ x : \min_u \max_v d^2(x(t_1),
+         \mathcal{M}) \le 0 \mid x(\tau) = x \}.
     \]
 \end{definition}
 Для введенного множества справедливо представление аналогичное представлению 
 \begin{statement}
     Для \( W_-[\tau] \) справедливо представление
     \begin{equation}
-        W_-(\tau, t_1, \mathcal{M}) = \left( \mathcal{M} \dot{-} \int\limits_{\tau}^{t_1} \mathcal{Q}(t)
-         dt \right) + \int\limits_{\tau}^{t_1} (-\mathcal{P}(t)) dt, \quad t_0 \le s \le t_1.
+        W_-(\tau, t_1, \mathcal{M}) = \left( \mathcal{M} \dot{-} \int\limits_{\tau}^{t_1}
+         \mathcal{Q}(t) dt \right) + \int\limits_{\tau}^{t_1} (-\mathcal{P}(t)) dt, \quad 
+         t_0 \le s \le t_1.
     \end{equation}
 \end{statement}
 Доказательство этого утверждения проводится аналогично доказательству соответствующего утверждения для
  множества максиминного типа.
 
-Теперь, аналогично построению альтернированного интеграла Понтрягина \( \mathcal{I}(\tau, t_1, \mathcal{M}) \),
-рассмотрим суперпозицию множеств \( W_-(t, t_1, \mathcal{M}) \) для произвольного разбиения \( \Sigma_k
- = \{ \sigma_1, \dots, \sigma_k\} \) отрезка \( \tau \le t \le t_1 \).
+Теперь, аналогично построению альтернированного интеграла Понтрягина \( \mathcal{I}(\tau, t_1,
+ \mathcal{M}) \), рассмотрим суперпозицию множеств \( W_-(t, t_1, \mathcal{M}) \) для произвольного
+ разбиения \( \Sigma_k = \{ \sigma_1, \dots, \sigma_k\} \) отрезка \( \tau \le t \le t_1 \).
 
 \[
-    W_-(t_1 - \sigma_1, t_1, \mathcal{M}) = \left( \mathcal{M} \dot{-} \int\limits_{t_1 - \sigma_1}^{t_1}
-     \mathcal{Q}(s) ds \right) + \int\limits_{t_1 - \sigma_1}^{t_1} (-\mathcal{P}(s))ds.
+    W_-(t_1 - \sigma_1, t_1, \mathcal{M}) = \left( \mathcal{M} \dot{-} \int\limits_{t_1 - 
+     \sigma_1}^{t_1} \mathcal{Q}(s) ds \right) + \int\limits_{t_1 - \sigma_1}^{t_1} (-\mathcal{P}(s))ds.
 \]
 И далее приходим к выражению
 \begin{multline}\label{}
-    \mathcal{I}_-(\tau, t_1, \mathcal{M}, \Sigma_k) = \left(\dots\left(\left(\mathcal{M} \dot{-} \int\limits_{t_1
-     - \sigma_1}^{t_1} \mathcal{Q}(t) dt \right) + \int\limits_{t_1 - \sigma_1}^{t_1}(-\mathcal{P}(t)) dt \right) 
-     \dot{-} \dots \right. \\
+    \mathcal{I}_-(\tau, t_1, \mathcal{M}, \Sigma_k) = \left(\dots\left(\left(\mathcal{M} \dot{-}
+     \int\limits_{t_1 - \sigma_1}^{t_1} \mathcal{Q}(t) dt \right) + \int\limits_{t_1 - 
+     \sigma_1}^{t_1}(-\mathcal{P}(t)) dt \right) \dot{-} \dots \right. \\
     \left. + \int\limits_{\tau}^{\tau + \sigma_k} (-\mathcal{P}(t)) dt \right) .
 \end{multline}
 
 Формальная процедура, описанная выше, предполгает что все множества \( \mathcal{I}_-[\cdot]\) не пусты.
 Для этого необходимо принять
 \begin{assumption}
-    Существует непрерывная функция \( g(t) : [t_0, t_1] \to \mathbb{R}^n \) и число \( r \) такие, что для любого
-     разбиения \( \Sigma_k \) справедливо включение
+    Существует непрерывная функция \( g(t) : [t_0, t_1] \to \mathbb{R}^n \) и число \( r \) такие,
+     что для любого разбиения \( \Sigma_k \) справедливо включение
     \[
-        g \left(t_1 - \sum_{i = 1}^j \sigma_i \right) + rB \subseteq \mathcal{I}_-\left[ t_1 - \sum_{i = 1}^j
-         \sigma_i \right], \quad j = 1, \dots, m.
+        g \left(t_1 - \sum_{i = 1}^j \sigma_i \right) + rB \subseteq \mathcal{I}_-\left[ t_1 - 
+         \sum_{i = 1}^j \sigma_i \right], \quad j = 1, \dots, m.
     \]
 \end{assumption}
 
 \begin{lemma}
     Существует замкнутое множество --- хаусдорфов предел \( \mathcal{I}_-(\tau, t_1, \mathcal{M}) \)
     \[
-        \lim h \left( \mathcal{I}_-(\tau, t_1, \mathcal{M}, \Sigma_k), \mathcal{I}_-(\tau, t_1, \mathcal{M}) \right) = 0    
+        \lim h \left( \mathcal{I}_-(\tau, t_1, \mathcal{M}, \Sigma_k), \mathcal{I}_-(\tau, t_1,
+         \mathcal{M}) \right) = 0    
     \]
     при
     \[
-        \max\{\sigma_i : i = 1, \dots, k \} \to 0, \quad k \to \infty, \quad \sum_{i = 1}^k \sigma_i = t_1 - \tau,
+        \max\{\sigma_i : i = 1, \dots, k \} \to 0, \quad k \to \infty, \quad \sum_{i = 1}^k 
+         \sigma_i = t_1 - \tau,
     \]
     и этот предел не зависит от выбора разбиений \( \Sigma_k \)
 \end{lemma}
@@ -469,17 +475,19 @@
 \end{lemma}
 
 \begin{lemma}
-    Многозначное отображение \( \mathcal{W}^-(t, t_1, \mathcal{M}) \) удовлетворяет полугрупповому свойству, а именно
+    Многозначное отображение \( \mathcal{W}^-(t, t_1, \mathcal{M}) \) удовлетворяет полугрупповому
+     свойству, а именно
     \[
-        \mathcal{W}_-(\tau, t_1, \mathcal{M}) = \mathcal{W}_-(\tau, t, \mathcal{W}_-(t, t_1, \mathcal{M})), \quad \tau
-         \le t \le t_1.
+        \mathcal{W}_-(\tau, t_1, \mathcal{M}) = \mathcal{W}_-(\tau, t, \mathcal{W}_-(t, t_1,
+         \mathcal{M})), \quad \tau \le t \le t_1.
     \]
 
 \end{lemma}
 
-Отметим, что алтернированные интегралы соответствуют пределам разных информационных схем. Так, альтернированный интеграл
- Понтрягина предполагает появление текущей информации о помехах с опережением, в то время как интеграл второго рода ---
- с запаздываанием. Тем не менее, в пределе эти схемы дают один и тот же результат, а именно, справедливо утверждение.
+Отметим, что алтернированные интегралы соответствуют пределам разных информационных схем. Так,
+ альтернированный интеграл Понтрягина предполагает появление текущей информации о помехах с опережением,
+ в то время как интеграл второго рода --- с запаздываанием. Тем не менее, в пределе эти схемы дают
+ один и тот же результат, а именно, справедливо утверждение.
 
 \begin{theorem}
     Альтернированный интеграл Понтрягина совпадает с альтернированным интегралом второго рода:
@@ -491,40 +499,50 @@
 \section{Решение задачи синтеза}
 Суммируем основыне утверждения в виде следуещей теоремы.
 \begin{theorem}
-    1. Последовательные максимин \( V^+(\tau, x) \) и минимакс \( V^-\) равны и совпадают с функцией цены \( \mathcal{V}(\tau,x) \):
+    1. Последовательные максимин \( V^+(\tau, x) \) и минимакс \( V^-\) равны и совпадают с функцией
+     цены \( \mathcal{V}(\tau,x) \):
     \[
         V^+(\tau, x) \equiv V^-(\tau, x) \equiv \mathcal{V}(\tau, x),
     \]
     2. Множество разрешимости задачи допускает следющие эквивалентные представления:
     \[
-        \mathcal{I}(\tau, t_1, \mathcal{M}) = \mathcal{W}^*[\tau] = \{ x : \mathcal{V}(\tau \le 0 \}, \quad t_0 \le \tau \le t_1.
+        \mathcal{I}(\tau, t_1, \mathcal{M}) = \mathcal{W}^*[\tau] = \{ x : \mathcal{V}(\tau \le 0 \},
+         \quad t_0 \le \tau \le t_1.
     \]
-    То есть, алтернированный интеграл Понтрягина \( \mathcal{I}(\tau, t_1, \mathcal{M}) \), сечение моста Красовского 
-     \( \mathcal{W}[\tau] \) и множество уровня определенной нами функции \( \mathcal{V}(\tau, x) \) суть одно и то же множество. 
+    То есть, алтернированный интеграл Понтрягина \( \mathcal{I}(\tau, t_1, \mathcal{M}) \), сечение
+     моста Красовского \( \mathcal{W}[\tau] \) и множество уровня определенной нами функции
+     \( \mathcal{V}(\tau, x) \) суть одно и то же множество. 
 \end{theorem}
 
 Кроме того, функция цены \( \mathcal{V}(\tau, x) \) обладает следующими свойствами.
 \begin{theorem}
     1. Справедлив принцип оптимальности
     \[
-        \mathcal{V}(\tau, x \mid \mathcal{V}(t_1, \cdot)) = \mathcal{V}(\tau, x \mid \mathcal{V}(t, \cdot \mid \mathcal{V}(t_1,
-         \cdot))), \quad \mathcal{V}(t_1, x) \equiv d^2(x, \mathcal{M}), \quad \tau \le t \le t_1. 
+        \mathcal{V}(\tau, x \mid \mathcal{V}(t_1, \cdot)) = \mathcal{V}(\tau, x \mid \mathcal{V}(t, 
+         \cdot \mid \mathcal{V}(t_1, \cdot))), \quad \mathcal{V}(t_1, x) \equiv d^2(x, \mathcal{M}),
+         \quad \tau \le t \le t_1. 
     \]
-    2. Если существует непрерывная частная производная \( \partial \rho(l \mid \mathcal{W}[t])/ \partial t, \forall l \in
-     \mathbb{R}^n \), то фукнция \( \mathcal{V}(t, x) \) является классическим решением уравнения Гамильтона-Якоби-Беллмана-Айзекса.
+    2. Если существует непрерывная частная производная \( \partial \rho(l \mid \mathcal{W}[t]) / 
+     \partial t, \forall l \in \mathbb{R}^n \), то фукнция \( \mathcal{V}(t, x) \) является 
+     классическим решением уравнения Гамильтона-Якоби-Беллмана-Айзекса.
     \[
-        \frac{\partial \mathcal{V}}{\partial t} + \min_u \max_v \left( \frac{\partial \mathcal{V}}{\partial x}, u + v \right) = 0
+        \frac{\partial \mathcal{V}}{\partial t} + \min_u \max_v \left( \frac{\partial \mathcal{V}}
+         {\partial x}, u + v \right) = 0
     \]
     с краевым условием \( \mathcal{V}(t_1, x) = h_+^2(x, \mathcal{M}) \).
 \end{theorem}
 
-Если решение \eqref{HJBI}, \eqref{HJBI_boundary} удается найти, то гарантирующая стратегия управления находится следубщим образом:
+Если решение \eqref{HJBI}, \eqref{HJBI_boundary} удается найти, то гарантирующая стратегия управления
+ находится следубщим образом:
 \begin{equation}
-    \mathcal{U}_*(t,x) = \mathrm{argmin} \left\{ \left( \frac{\partial \mathcal{V}}{\partial x}, u \right) : u \in \mathcal{P}(t) \right\},
+    \mathcal{U}_*(t,x) = \mathrm{argmin} \left\{ \left( \frac{\partial \mathcal{V}}{\partial x},
+     u \right) : u \in \mathcal{P}(t) \right\},
 \end{equation}
-если градиент \( \partial \mathcal{V} / \partial x \) существует в точке \( (t, x) \). Или в общем случае
+если градиент \( \partial \mathcal{V} / \partial x \) существует в точке \( (t, x) \). Или в общем
+ случае
 \begin{equation}
-    \mathcal{U}_*(t,x) = \left\{ u: \max_v \{ dh_+^2(x, \mathcal{W}[t]) / dt : v \in \mathcal{Q}(t) \} \le 0 \right\}.
+    \mathcal{U}_*(t,x) = \left\{ u: \max_v \{ dh_+^2(x, \mathcal{W}[t]) / dt : v \in \mathcal{Q}(t) \} 
+     \le 0 \right\}.
 \end{equation}
 
 \begin{theorem}\label{dif_incl_theorem}
@@ -532,24 +550,27 @@
     \begin{equation*}
         \dot{x} \in \mathcal{U}_*(t,x) + v(t), \quad x_{\tau} = x(\tau) \in \mathcal{W}[t],
     \end{equation*}
-    удовлетворяют включению \( x(t) \in \mathcal{W}[t] , \tau \le t \le t_1 \), и, следовательно, достигают целевого множества \( \mathcal{M} 
-     : x(t_1) \in \mathcal{M} \) при любом возмущении \( v(t) \). 
+    удовлетворяют включению \( x(t) \in \mathcal{W}[t] , \tau \le t \le t_1 \), и, следовательно,
+     достигают целевого множества \( \mathcal{M} : x(t_1) \in \mathcal{M} \) при любом возмущении
+     \( v(t) \). 
 \end{theorem}
 
-Таким образом синтезирующая стратегия \( \mathcal{U}_*(t,x) \) разрешает задачу целевого синтеза управлений при неопределенности.
- Среди допустимых стратегий \( \mathcal{U}(t,x) \), удовлетворяющих включению \( \mathcal{U}(t,x) \subseteq \mathcal{U}_*(t,x) \), то есть
- обеспечивающих выполнение теоремы \eqref{dif_incl_theorem}, находится стратегия "экстремального прицеливания", задаваемая условиями
+Таким образом синтезирующая стратегия \( \mathcal{U}_*(t,x) \) разрешает задачу целевого синтеза 
+ управлений при неопределенности. Среди допустимых стратегий \( \mathcal{U}(t,x) \), удовлетворяющих
+ включению \( \mathcal{U}(t,x) \subseteq \mathcal{U}_*(t,x) \), то есть обеспечивающих выполнение
+ теоремы \eqref{dif_incl_theorem}, находится стратегия "экстремального прицеливания", задаваемая
+ условиями
 \begin{equation}
     \mathcal{U}_e(t,x) = \partial_l k(t, -l) = \mathrm{arg min} \{(l^0, u) \mid u \in \mathcal{P}(t) \}.
 \end{equation}
-Здесь \( \partial_l k \) --- субдифференциал функции \( k(t, l) \) по переменной \( l \), \( k(t,l) = \rho(l \mid
- \mathcal{P}(t)), l^0 = l^0(t, x) \ne 0 \) --- максимизатор задачи 
+Здесь \( \partial_l k \) --- субдифференциал функции \( k(t, l) \) по переменной \( l \), \( k(t,l)
+ = \rho(l \mid \mathcal{P}(t)), l^0 = l^0(t, x) \ne 0 \) --- максимизатор задачи 
 \begin{equation}
     h_+(x, \mathcal{W}[\tau]) = \max \{(l,x) - \rho(l \mid \mathcal{W}[\tau]) \mid (l,l) \le 1 \},
 \end{equation}
 причем \( l^0(t,x) = 0 \), если \( h_+(x, \mathcal{W}[\tau)) = 0 \).
 
-Как видно для поиска гарантирующей стратегии достаточно знать лишь сечения \( \mathcal{W}[t] \) функции цены.
- \( \mathcal{V}(t,x) \). Поскольку интегрирование уравнения Гамильтона-Якоби, как правило, очень нетривиально, 
- будем использовать аппроксимации сечения функции цены вместо самой функции. Таким образом сведем задачу к задаче
- поиска аппроксимаций альтернированного интеграла Понтрягина.
+Как видно для поиска гарантирующей стратегии достаточно знать лишь сечения \( \mathcal{W}[t] \) функции
+ цены \( \mathcal{V}(t,x) \). Поскольку интегрирование уравнения Гамильтона-Якоби, как правило, очень 
+ нетривиально, будем использовать аппроксимации сечения функции цены вместо самой функции. Таким 
+ образом сведем задачу к задаче поиска аппроксимаций альтернированного интеграла Понтрягина.
