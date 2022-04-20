@@ -1,5 +1,4 @@
-\anonsection{Теоретическая часть}
-\anonsubsection{Задача синтеза управлений при неопределенности}
+\section{Задача синтеза управлений при неопределенности}
 
 Рассмотрим систему
 \begin{equation}\label{problem}
@@ -8,7 +7,7 @@
 с непрерывными матрицами \( A(t), B(t), C(t) \). Где \( x \in \mathbb{R}^n \)
  --- \emph{вектор состояния} системы; \( u \in \mathbb{R}^p \) --- 
  \emph{управление}, \( v \in \mathbb{R}^q \) --- \emph{внешнее возмущение},
- стесненные почти всюду по \( t \) некоторыми "геометрическимио" ограничениями
+ стесненные почти всюду по \( t \) некоторыми "геометрическими" ограничениями
 \[
     u(t) \in \mathcal{P}(t), \quad v(t) \in \mathcal{Q}(t),
 \]
@@ -43,16 +42,16 @@
 
 Пусть задано "целевое" множество \( \mathcal{M} \in \text{comp} \, \mathbb{R}^n \).
 Задача \emph{о синтезе управления при неопределенности} состоит в отыскании
- \emph{множества разрешимости} \( \mathcal{W}^*(\tau, t_1, \mathcal{M}) = 
- \mathcal{W}^*[\tau] \) и \emph{позиционной стратегией управления}
+ \emph{множества разрешимости} \( \mathcal{W}(\tau, t_1, \mathcal{M}) = 
+ \mathcal{W}[\tau] \) и \emph{позиционной стратегией управления}
  \( \mathcal{U}(t,x) \in U_{\mathcal{P}} \) таких, что все решения
  \eqref{dif_inclusion}, выпущенные из любой начальной позиции \( \{\tau, 
- x_{\tau}\}, \, x_{\tau} = x(\tau), \, x_{\tau} \in \mathcal{W}^*(\tau, t_1, 
+ x_{\tau}\}, \, x_{\tau} = x(\tau), \, x_{\tau} \in \mathcal{W}(\tau, t_1, 
  \mathcal{M}), \, \tau \in [t_0, t_1) \), достигали бы \emph{целевого множества}
  \( \mathcal{M} \) в момент времени \( t_1 \) при любом внешнем возмущени
  \( v(t) \in \mathcal{Q}(t) \). 
 
-Задача имеет смысл в случае \( \mathcal{W}^*(\tau, t_1, \mathcal{M}) \ne 
+Задача имеет смысл в случае \( \mathcal{W}(\tau, t_1, \mathcal{M}) \ne 
  \varnothing \). Многозначная функция \( \mathcal{W}[t] = \mathcal{W}(t, 
  t_1,\mathcal{M}) \) называется \emph{трубкой разрешимости} или 
  \emph{мостом Красовского}, и является ключевым элементом в решении задачи.
@@ -60,7 +59,7 @@
  при помощи некоторого многозначного инетграла --- \emph{альтернированного 
  интеграла Л.С. Понтрягина}.
 
-\anonsubsection{Альтернированный интеграл Понтрягина}
+\section{Альтернированный интеграл Понтрягина}
 Напомним определение этого интеграла. Для этого приведем вначале систему 
  \eqref{problem} к более простому виду
 \begin{equation}\label{simplified_problem}
@@ -72,7 +71,7 @@
 \end{equation}
  где \( \mathcal{P}_0(t) = G(t_1, t) B(t) \mathcal{P}(t), \, \mathcal{Q}_0 = 
  G(t_1,t)C(t)\mathcal{Q}(t) \) и \( G(t,t_1) \) --- фундаментальная матрица
- однородного уравнения \eqref{problem}. Для этого сделаем невырожденную замену 
+ однородного уравнения \eqref{problem}. Для этого сделаем \emph{невырожденную замену} 
  \( x(t) = G(t_1, t)x(t) \). Далее вместо \eqref{problem} будем
  рассматривать \eqref{simplified_problem} с ограничениями \eqref{simplified_bounds}, 
  опуская индекс нуль.
@@ -89,11 +88,15 @@
 \end{definition}
 \begin{statement}
     Для \( W[t] \) справедливо представление:
-    \begin{equation}
+    \begin{equation}\label{solvability_set_format}
         W(t,t_1,\mathcal{M}) = \left( \mathcal{M} + \int\limits_t^{t_1} 
          (-\mathcal{P}(t)) dt \right) \dot{-} \int\limits_t^{t_1} \mathcal{Q}(t) dt,
          \quad \tau \le t \le t_1.
     \end{equation}
+    Здесь символ \( \mathcal{P} \dot{-} \mathcal{Q} \) означает геометрическую(по 
+     Минковскому) разность двух множеств \( \mathcal{P}, \, \mathcal{Q}\). А именно,
+     \( c \in \mathcal{P} \dot{-} \mathcal{Q} \) тогда и только тогда, когда \(c +
+     \mathcal{Q} \subseteq \mathcal{P} \).
 \end{statement}
 \begin{proof}
     При заданных \( u \) и \( v \) значение на правом конце выражается как 
@@ -106,22 +109,447 @@
         W(t, t_1, \mathcal{M}) = \bigcap\limits_{v \in \mathcal{Q}} 
          \bigcup\limits_{u \in \mathcal{P}} \left\{ x : x = x(t_1)
          -\int\limits_t^{t_1}u(\tau) d\tau - \int\limits_t^{t_1} v(\tau)
-         d\tau, \, x(t_1) \in \mathcal{M} \right\} \\
+         d\tau, \, x(t_1) \in \mathcal{M} \right\} = \\
         = \bigcap\limits_{v \in \mathcal{Q}} \bigcup\limits_{u \in 
          \mathcal{P}} \left\{ \mathcal{M} - \int\limits_t^{t_1} u(\tau) d\tau
-         - \int\limits_t^{t_1} v(\tau) d\tau \right\} \\
+         - \int\limits_t^{t_1} v(\tau) d\tau \right\} = \\
         = \bigcap\limits_{v \in \mathcal{Q}} \left\{ \mathcal{M} +
          \int\limits_t^{t_1}(-\mathcal{P}(\tau)) d\tau - \int\limits_t^{t_1}
-         v(\tau) d\tau \right\} \\
+         v(\tau) d\tau \right\} = \\
         = \left\{ x : x \in \left( \mathcal{M} + \int\limits_t^{t_1}(- \mathcal{P}
          (\tau)) \right)  - \int\limits_t^{t_1} v(\tau) d\tau, \, \forall v(\tau)
-         \in \mathcal{Q}(\tau) \right\} \\
+         \in \mathcal{Q}(\tau) \right\} = \\
         = \left\{ x : x + \int\limits_t^{t_1} v(\tau) d\tau \in \mathcal{M} + 
          \int\limits_t^{t_1}(- \mathcal{P}(\tau)) d\tau, \, \forall v(\tau) \in
-         \mathcal{Q}(\tau) \right\} \\
+         \mathcal{Q}(\tau) \right\}.
     \end{multline*}
+    Последнее в силу определения разности по Минковскому совпадает с правой частью
+     формулы \eqref{solvability_set_format}.
 \end{proof}
 
- 
+Опишем формальную процедуру построения альтернированного интеграла. Для этого
+ построим множество \( \mathcal{W}^* (\tau, t_1, \mathcal{M}) \), явялющееся
+ суперпозицей множеств \( W(\tau, t_1, \mathcal{M}) \), определенных выше. Взяв
+ интервал \( \tau \le t \le t_1 \), рассмотрим разбиение \( \Sigma_k = \{ \sigma_1,
+ \dots, \sigma_k \} \),
+\[
+    t = t_1 - \sum_{i=1}^k \sigma_i, \dots, t_1 - \sigma_1, t_1, \quad \sigma_i > 0.
+\]
+На первом шаге, начав с момента \( t_1 \), найдем множество \( W[t_1 - \sigma_1] = 
+ W(t_1 - \sigma_1, t_1, \mathcal{M}) \). Вследствие \eqref{solvability_set_format}
+ будем иметь
+\begin{equation}\label{first_iter}
+     W(t_1 - \sigma_1, t_1, \mathcal{M}) = \left( \mathcal{M} + \int\limits_{t_1 - \sigma_1}
+     ^{t_1}(-\mathcal{P}(\tau)) d\tau \right) \dot{-} \int\limits_{t_1 - \sigma_1}^{t_1}
+     \mathcal{Q}(\tau)d\tau.
+\end{equation}
+Продолжая последовательную процедуру, имеем
+\begin{equation}
+    \begin{gathered}\label{second_iter}
+        W(t_1 - \sigma_1 -\sigma_2, t_1 - \sigma_1, W[t_1 - \sigma_1]) = \left( W[t_1 - \sigma_1]
+        + \int\limits_{t_1 - \sigma_1 - \sigma_2}^{t_1 - \sigma_1} (-\mathcal{P}(\tau))d\tau \right)
+        \dot{-} \\
+        \dot{-} \int\limits_{t_1 - \sigma_1 - \sigma_2}^{t_1 - \sigma_1} \mathcal{Q}(\tau) d\tau
+    \end{gathered}
+\end{equation}
+и, в итоге, получаем
+\begin{equation}\label{pontr_iter}
+    W(t, t + \sigma_k, W(t + \sigma_k, t + \sigma_k + \sigma_{k-1}, \dots, W(t_1 - \sigma_1, t_1,
+    \mathcal{M}))) = \mathcal{I}(t, t_1, \mathcal{M}, \Sigma_k).
+\end{equation}
+В приведенной процедуре предполагается, что все возникающие множества \( W(\cdot) \) вида 
+ \eqref{pontr_iter} непусты.
+\begin{assumption}\label{assumption_nonempty}
+    Существует такая непрерывная функция \( \beta(t) > 0, \, t \in [t_0, t_1] \), что все
+     множества
+    \begin{equation}
+        \begin{gathered}
+            W \left( t_1 - \sum_{i=1}^j\sigma_i, t_1 - \sum_{i = 1}^{j - 1}\sigma_i, W 
+             \left( t_1 - \sum_{i = 1}^ {j - 1} \sigma_1, t_1 - \sum_{i = 1}^{j - 2} 
+             \sigma_i, \dots, W(t_1 - \sigma_1, t_1, \mathcal{M}) \right) \dots \right)
+             \dot{-} \\
+            \dot{-} \ \beta \left( t_1 - \sum_{i = 1}^j \sigma_i
+             \right) S \ne \varnothing 
+        \end{gathered}
+    \end{equation}
+    при \( j = 1, \dots, k \), каким бы ни было разбиение \( \Sigma_k \).
+\end{assumption}
+Предположение \eqref{assumption_nonempty} обеспечивает условие \( W(\tau, t_1, \mathcal{M}) = 
+ \mathcal{I}(t, t_1, \mathcal{M}, \Sigma_k) \ne \varnothing \) для любого разбиения \( \Sigma_k \).
 
+Ниже всюду будем случитать предположение \eqref{assumption_nonempty} выполненым. Следует заметить,
+ что данное замечание введено не только для облегчения выкеладок. В его отсутствие некоторые из
+ утверждений, приводимых далее, могут оказаться неверными.
 
+Следуя \eqref{first_iter} --- \eqref{pontr_iter}, приходим к аналитическому выражению
+\begin{multline}\label{pontr_analytical}
+    \mathcal{I}(\tau, t_1, \mathcal{M}, \Sigma_k) = \left( \dots \left( \left( \mathcal{M} + 
+     \int\limits_{t_1 - \sigma_1}^{t_1} (-\mathcal{P}(\tau)) d\tau \right) \dot{-} \int\limits_
+     {t_1 - \sigma_1}^{t_1} \mathcal{Q}(\tau) d\tau \right) + \dots \dot{-} \right. \\
+    \left. \int\limits_t^{t + \sigma_k} \mathcal{Q}(\tau) d\tau \right).
+\end{multline}
+
+Множества \( \mathcal{I} (t, t_1, \mathcal{M}, \Sigma_k) \) есть выпуклые компакты для любого
+ разбиения \( \Sigma_k \). Рассмотрим хаусдорфов предел этих множеств при \( \max \{\sigma_i : 
+ \ i = 1, \dots, k \} \to 0 \).
+
+ Напомним, что \emph{хаусдорфово полурасстояние} между компактами \( \mathcal{Q}, \mathcal{M} \)
+ определяется как 
+\[ 
+    h_+(\mathcal{Q}, \mathcal{M}) = \max_x \min_z \{(x - z, x - z)^{1/2} \mid x \in \mathcal{Q}, 
+     z \in \mathcal{M} \},
+\]
+в то время как \emph{хаусдорфово расстояние} \( h(\mathcal{Q}, \mathcal{M}) = \max
+ \{ h_+(\mathcal{Q}, \mathcal{M}), h_+(\mathcal{M}, \mathcal{Q}) \}. \)
+
+\begin{lemma}
+    Существует хаусдорфов предел \( \mathcal{I}(t, t_1, \mathcal{M}) \)
+    \[
+        \lim h \left( \mathcal{I}(t, t_1, \mathcal{M}, \Sigma_k), \mathcal{I}(t, t_1, \mathcal{M})
+         \right) = 0
+    \]
+    при 
+    \[
+        \max\{\sigma_i: i = 1,\dots, k \} \to 0, \quad k \to \infty, \quad \sum_{i = 1}^k \sigma_i 
+         = t_1 - t. 
+    \]
+    Этот предел не зависит от способа разбиения \( \Sigma_k \).
+\end{lemma}
+Множество
+\begin{equation}\label{alt_sovability_region}
+    \mathcal{I}(t, t_1, \mathcal{M}) = \mathcal{W}^*(t,t_1,\mathcal{M}) = \mathcal{W}^*[t]
+\end{equation}
+будем называть \emph{альтернированной областью разрешимости} задачи \eqref{problem}, обозначая его 
+ как 
+\[
+    \mathcal{I}(t, t_1, \mathcal{M}) = \int\limits_{t_1, \mathcal{M}}^t \left( (-\mathcal{P}(\tau))
+     d\tau \dot{-} \mathcal{Q}(\tau) d\tau \right).
+\]
+Фактически множество \( \mathcal{I}(t, t_1, \mathcal{M}) \) есть значение некоторого многозначного
+ интеграла, известного как \emph{альтернированный интеграл Понтрягина}. Этот интеграл детально
+ описан в статье \cite{lin_dif_chasing}.
+
+\begin{lemma}
+    Многозначное отображение \( \mathcal{W}^*(t, t_1, \mathcal{M}) \) удовлетворяет полугрупповому
+     свойству:
+    \begin{equation}
+        \mathcal{W}^*(t, t_1, \mathcal{M}) = \mathcal{W}^*(\tau, t, \mathcal{W}^*(t, t_1,\
+         \mathcal{M})), \quad  \tau \le t \le t_1.
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    Доказательство этого факта вытекает из свойства аддитивности альтернированного интеграла
+     \( \mathcal{I}(t, t_1, \mathcal{M}) \), которое доказывается, например, в \cite{lin_dif_chasing}.
+\end{proof}
+Ключевое свойство альтернированного интеграла содержит следующая
+\begin{theorem}
+    Множество разрешимости \( \mathcal{W}[t] \) может быть представлено как 
+    \begin{equation}
+        \mathcal{W}[t] \equiv \mathcal{W}^*[t] \equiv \mathcal{I}(t, t_1, \mathcal{M}), \quad
+         t_0 \le t \le t_1.
+    \end{equation}
+\end{theorem}
+
+\section{Гарантированный синтез управлений. Функции цены}
+Сформулированная задача \emph{гарантированного синтеза управлений при неопределенности} не содержит 
+ каких-либо криетриев оптимальности. В ней требуется найти лишь некоторое допустимое "гарантированное"
+ решение. Тем не менее будем рассматривать её посредством сведения к процедурам оптимизации, принятых
+ в рамках идей динамического программирования.
+
+Введем \emph{функцию цены} 
+\begin{equation}
+    \mathcal{V} = \min_{\mathcal{U}} \max_{x(\cdot)} \{\mathcal{I}(t,x) \mid \mathcal{U} \in 
+     U_{\mathcal{P}}, \, x(\cdot) \in \mathcal{X}_{\mathcal{U}}(\cdot) \},
+\end{equation}
+где
+\[
+     \mathcal{I}(t,x) = d^2(x[t_1], \mathcal{M})
+\]
+и \( \mathcal{X}_{\mathcal{U}}(\cdot) \) --- множество всех траекторий \( x(\cdot) \) включения
+\begin{equation}
+    \dot{x} \in \mathcal{U}(t,x) + \mathcal{Q}(t), \quad x(\tau) = x,
+\end{equation}
+порожденных заданной стратегией \( \mathcal{U} \in U_{\mathcal{P}} \).
+
+В таком случае для функции \( \mathcal{V}(t,x) \) можно составить следующее уравнение 
+ Гамильтона-Якоби-Беллмана-Айзекса:
+\begin{equation}\label{HJBI}
+    \frac{\partial \mathcal{V}}{\partial t} + \min_u \max_v \left( \frac{\partial \mathcal{V}}
+     {\partial x}, u + v \right) = 0, \quad u \in \mathcal{P}(t), \ v \in \mathcal{Q}(t),
+\end{equation}
+с граничным условием
+\begin{equation}\label{HJBI_boundary}
+    \mathcal{V}(t_1, x) = d^2(x, \mathcal{M}).
+\end{equation}
+В общем случае подобное уравнение может не иметь классического решения и для его рассмотрения
+ следует привлекать понятия обобщенных "вязкостных" или "минимаксных" решений. В данной работе
+ функция цены \( \mathcal{V}(t,x) \) оказывается выпуклой или квазивыпуклой по \( x \). Поэтому
+ решения соответствующих уравнений Гамильтона-Якоби-Беллмана-Айзекса, рассматриваемых здесь, не
+ выходят за рамки вязкостных или даже классических решений.
+
+Перейдем к другой интерпретации функции цены \( \mathcal{V}(t,x) \). Рассмотрим интервал 
+ \( \tau \le t \le t_1 \) и построим разбиение \( \Sigma_k = \{ \sigma_1, \dots, \sigma_k \} \),
+ подобное рассмотренному в разделе 1. Для данного разбиения рассмотрим рекуррентные соотношения
+\begin{equation*}
+    V_k^+(t_1 - \sigma_1, x) = \left\{ \max_v \min_u d^2(x(t_1), \mathcal{M}) \mid t_1 -
+     \sigma_1 \le t \le t_1, \ x(t_1 - \sigma_1) = x \right\},
+\end{equation*}
+\begin{multline*} 
+    V_k^+(t_1 - \sigma_1 - \sigma_2, x) = \left\{ \max_v \min_u V_k^+(t_1 - \sigma_1, x(t_1 -
+     \sigma_1)) \mid t_1 - \sigma_1 - \sigma_2 \le t \le t_1 - \sigma_1, \right. \\ 
+    x(t_1 - \sigma_1 - \sigma_2) = x \Big\},
+\end{multline*}
+и так далее. Наконец в точке \( \tau = t_1 - \sum\limits_{i = 1}^k \sigma_i \):
+\begin{equation*}
+    V_k^+(\tau, x) = \left\{ \max_v \min_u V_k^+ (\tau + \sigma_k, x(\tau + \sigma_k)) \mid
+     \tau \le t \le \tau + \sigma_k, \ x(\tau) = x \right\},
+\end{equation*}
+где \( v(t) \in \mathcal{Q}(t), u(t) \in  \mathcal{P}(t) \) почти всюду на соответствующих
+ интервалах. Всюду предполагаем, что "максимины" существуют.
+
+\begin{lemma}
+    При
+    \[ 
+        \max_{i = 1,\dots,k} \{\sigma_i\}, \quad k \to \infty, \quad \sum_{i = 1}^k \sigma_i = 
+         t_1 - \tau, 
+    \]
+    существует поточечный предел
+    \[
+        V^+(\tau, x) = \lim_{k \to \infty} V_k^+(\tau, x),
+    \]
+    не зависит от выбора разбиения \( \Sigma_k \).
+\end{lemma}
+Будем называть \( V^+(\tau, x) \) \emph{последовательным максимином}. Обозначим
+\begin{equation}
+    V^+(\tau, x) = V^+(\tau, x \mid V^+(t_1, \cdot)), \quad V^+(t_1, x) \equiv d^2(x,
+     \mathcal{M}).
+\end{equation}
+Нетрудно заметить, что имеет место следующая
+\begin{lemma}
+    Функция \( V^+(\tau, x) \) удовлетворяет полурупповому свойству
+    \[
+        V^+(\tau, x \mid V^+(t_1, \cdot)) = V^+(\tau, x \mid V^+(t, \cdot \mid V^+(t_1, 
+         \cdot))).  
+    \]
+    При этом справедливо неравенство
+    \[
+        V^+(t, x) \ge \left\{ \max_v \min_u V^+(t + \sigma, x(t + \sigma)) \mid x(t) = x 
+         \right\}, \quad \sigma > 0.
+    \]
+\end{lemma}
+
+Отметим связь функции с альтернированным интегралом.
+\begin{lemma}
+    Справедливо равенство
+    \[
+        V^+ (\tau, x) = d^2(x, \mathcal{W}^*(\tau, t_1, \mathcal{M})),
+    \]
+    где \( \mathcal{W}^*[\tau] = \mathcal{W}^*(\tau, t_1, \mathcal{M}) = \mathcal{I}(\tau,
+     t_1, \mathcal{M}) \) --- значение альтернированного интеграла
+\end{lemma}
+Отюсда прямо следует
+\begin{lemma}
+    Альтернированный инетграл \( \mathcal{I}(\tau, t_1, \mathcal{M}) \) совпадает с
+     множеством уровня последовательного максимина \( V^+(\tau, x) \):
+    \[
+        \mathcal{I}(\tau, t_1, \mathcal{M}) = \{ x : V^+(\tau, x) \le 0 \}.
+    \]
+\end{lemma}
+
+Теперь рассмотрим задачу аналогичную предыдущей. Для произвольного \( \Sigma_k \), построим
+ рекуррентные соотношения 
+\begin{equation*}
+    V_k^-(t_1 - \sigma_1, x) = \left\{ \min_u \max_v  d^2(x(t_1), \mathcal{M}) \mid t_1 -
+     \sigma_1 \le t \le t_1, \ x(t_1 - \sigma_1) = x \right\},
+\end{equation*}
+\begin{multline*} 
+    V_k^-(t_1 - \sigma_1 - \sigma_2, x) = \left\{ \min_u \max_v  V_k^-(t_1 - \sigma_1, x(t_1 -
+     \sigma_1)) \mid t_1 - \sigma_1 - \sigma_2 \le t \le t_1 - \sigma_1, \right. \\ 
+    x(t_1 - \sigma_1 - \sigma_2) = x \Big\},
+\end{multline*}
+и так далее. Наконец в точке \( \tau = t_1 - \sum\limits_{i = 1}^k \sigma_i \):
+\begin{equation*}
+    V_k^-(\tau, x) = \left\{ \min_u \max_v  V_k^- (\tau + \sigma_k, x(\tau + \sigma_k)) \mid
+     \tau \le t \le \tau + \sigma_k, \ x(\tau) = x \right\},
+\end{equation*}
+Для определенных таким образом функций имеют место аналогичные утверждения
+\begin{lemma}
+    1. При
+    \[ 
+        \max_{i = 1,\dots,k} \{\sigma_i\}, \quad k \to \infty, \quad \sum_{i = 1}^k \sigma_i = 
+         t_1 - \tau, 
+    \]
+    существует поточечный предел
+    \[
+        V^-(\tau, x) = \lim_{k \to \infty} V_k^-(\tau, x),
+    \]
+    не зависит от выбора разбиения \( \Sigma_k \). \\
+    2. Функция \( V^-(\tau, x) \) удовлетворяет полугрупповому свойству.
+    \begin{equation}
+        V^-(\tau, x \mid V^-(t_1, \cdot)) = V^-(\tau, x \mid V^-(t, \cdot \mid V^-(t_1, \cdot))).
+    \end{equation} \\
+    3. Справедливо неравенство
+    \begin{equation}
+        V^-(t,x) \le \min_u \max_v \{ V^-(t + \sigma, x(t + \sigma)) \mid x(t) = x \}, \quad \sigma > 0.
+    \end{equation}
+\end{lemma}
+
+Подобно тому как альтернированный интеграл \( I(\tau, t_1, \mathcal{M}) \) является множеством уровня
+ последовательного максимина, множество уровня последовательного минимакса также представляет собой
+ некоторый многозначный интеграл. Определим его, для чего введем следующее
+\begin{definition}
+    Множество разрешимости \( W^-[\tau] \) минимаксоного типа называется следующая совокупность векторов
+    \[
+        W_-[\tau] = W_-(\tau, t_1, \mathcal{M}) = \{ x : \min_u \max_v d^2(x(t_1), \mathcal{M}) \le 0 \mid
+         x(\tau) = x \}.
+    \]
+\end{definition}
+Для введенного множества справедливо представление аналогичное представлению 
+\begin{statement}
+    Для \( W_-[\tau] \) справедливо представление
+    \begin{equation}
+        W_-(\tau, t_1, \mathcal{M}) = \left( \mathcal{M} \dot{-} \int\limits_{\tau}^{t_1} \mathcal{Q}(t)
+         dt \right) + \int\limits_{\tau}^{t_1} (-\mathcal{P}(t)) dt, \quad t_0 \le s \le t_1.
+    \end{equation}
+\end{statement}
+Доказательство этого утверждения проводится аналогично доказательству соответствующего утверждения для
+ множества максиминного типа.
+
+Теперь, аналогично построению альтернированного интеграла Понтрягина \( \mathcal{I}(\tau, t_1, \mathcal{M}) \),
+рассмотрим суперпозицию множеств \( W_-(t, t_1, \mathcal{M}) \) для произвольного разбиения \( \Sigma_k
+ = \{ \sigma_1, \dots, \sigma_k\} \) отрезка \( \tau \le t \le t_1 \).
+
+\[
+    W_-(t_1 - \sigma_1, t_1, \mathcal{M}) = \left( \mathcal{M} \dot{-} \int\limits_{t_1 - \sigma_1}^{t_1}
+     \mathcal{Q}(s) ds \right) + \int\limits_{t_1 - \sigma_1}^{t_1} (-\mathcal{P}(s))ds.
+\]
+И далее приходим к выражению
+\begin{multline}\label{}
+    \mathcal{I}_-(\tau, t_1, \mathcal{M}, \Sigma_k) = \left(\dots\left(\left(\mathcal{M} \dot{-} \int\limits_{t_1
+     - \sigma_1}^{t_1} \mathcal{Q}(t) dt \right) + \int\limits_{t_1 - \sigma_1}^{t_1}(-\mathcal{P}(t)) dt \right) 
+     \dot{-} \dots \right. \\
+    \left. + \int\limits_{\tau}^{\tau + \sigma_k} (-\mathcal{P}(t)) dt \right) .
+\end{multline}
+
+Формальная процедура, описанная выше, предполгает что все множества \( \mathcal{I}_-[\cdot]\) не пусты.
+Для этого необходимо принять
+\begin{assumption}
+    Существует непрерывная функция \( g(t) : [t_0, t_1] \to \mathbb{R}^n \) и число \( r \) такие, что для любого
+     разбиения \( \Sigma_k \) справедливо включение
+    \[
+        g \left(t_1 - \sum_{i = 1}^j \sigma_i \right) + rB \subseteq \mathcal{I}_-\left[ t_1 - \sum_{i = 1}^j
+         \sigma_i \right], \quad j = 1, \dots, m.
+    \]
+\end{assumption}
+
+\begin{lemma}
+    Существует замкнутое множество --- хаусдорфов предел \( \mathcal{I}_-(\tau, t_1, \mathcal{M}) \)
+    \[
+        \lim h \left( \mathcal{I}_-(\tau, t_1, \mathcal{M}, \Sigma_k), \mathcal{I}_-(\tau, t_1, \mathcal{M}) \right) = 0    
+    \]
+    при
+    \[
+        \max\{\sigma_i : i = 1, \dots, k \} \to 0, \quad k \to \infty, \quad \sum_{i = 1}^k \sigma_i = t_1 - \tau,
+    \]
+    и этот предел не зависит от выбора разбиений \( \Sigma_k \)
+\end{lemma}
+
+Будем называть
+\[ 
+    \mathcal{I}_-(\tau, t_1, \mathcal{M}) = \mathcal{W}_-(t, t_1, \mathcal{M}) = \mathcal{W}_-[t]
+\]
+\emph{альтернированным интегралом Л.С. Понтрягина второго рода}.
+
+\begin{lemma}
+    Справедливы соотношения:
+    \[
+        V^-(\tau, x) = d^2(x, \mathcal{W}_-(\tau, t_1, \mathcal{M})),
+        \mathcal{I}(\tau, t_1, \mathcal{M}) = \left\{ x : V^-(\tau, x) \le 0 \right\} 
+    \]
+\end{lemma}
+
+\begin{lemma}
+    Многозначное отображение \( \mathcal{W}^-(t, t_1, \mathcal{M}) \) удовлетворяет полугрупповому свойству, а именно
+    \[
+        \mathcal{W}_-(\tau, t_1, \mathcal{M}) = \mathcal{W}_-(\tau, t, \mathcal{W}_-(t, t_1, \mathcal{M})), \quad \tau
+         \le t \le t_1.
+    \]
+
+\end{lemma}
+
+Отметим, что алтернированные интегралы соответствуют пределам разных информационных схем. Так, альтернированный интеграл
+ Понтрягина предполагает появление текущей информации о помехах с опережением, в то время как интеграл второго рода ---
+ с запаздываанием. Тем не менее, в пределе эти схемы дают один и тот же результат, а именно, справедливо утверждение.
+
+\begin{theorem}
+    Альтернированный интеграл Понтрягина совпадает с альтернированным интегралом второго рода:
+    \[
+        \mathcal{W}(t, t_1, \mathcal{M}) = \mathcal{W}_-(t, t_1, \mathcal{M}).
+    \]
+\end{theorem}
+
+\section{Решение задачи синтеза}
+Суммируем основыне утверждения в виде следуещей теоремы.
+\begin{theorem}
+    1. Последовательные максимин \( V^+(\tau, x) \) и минимакс \( V^-\) равны и совпадают с функцией цены \( \mathcal{V}(\tau,x) \):
+    \[
+        V^+(\tau, x) \equiv V^-(\tau, x) \equiv \mathcal{V}(\tau, x),
+    \]
+    2. Множество разрешимости задачи допускает следющие эквивалентные представления:
+    \[
+        \mathcal{I}(\tau, t_1, \mathcal{M}) = \mathcal{W}^*[\tau] = \{ x : \mathcal{V}(\tau \le 0 \}, \quad t_0 \le \tau \le t_1.
+    \]
+    То есть, алтернированный интеграл Понтрягина \( \mathcal{I}(\tau, t_1, \mathcal{M}) \), сечение моста Красовского 
+     \( \mathcal{W}[\tau] \) и множество уровня определенной нами функции \( \mathcal{V}(\tau, x) \) суть одно и то же множество. 
+\end{theorem}
+
+Кроме того, функция цены \( \mathcal{V}(\tau, x) \) обладает следующими свойствами.
+\begin{theorem}
+    1. Справедлив принцип оптимальности
+    \[
+        \mathcal{V}(\tau, x \mid \mathcal{V}(t_1, \cdot)) = \mathcal{V}(\tau, x \mid \mathcal{V}(t, \cdot \mid \mathcal{V}(t_1,
+         \cdot))), \quad \mathcal{V}(t_1, x) \equiv d^2(x, \mathcal{M}), \quad \tau \le t \le t_1. 
+    \]
+    2. Если существует непрерывная частная производная \( \partial \rho(l \mid \mathcal{W}[t])/ \partial t, \forall l \in
+     \mathbb{R}^n \), то фукнция \( \mathcal{V}(t, x) \) является классическим решением уравнения Гамильтона-Якоби-Беллмана-Айзекса.
+    \[
+        \frac{\partial \mathcal{V}}{\partial t} + \min_u \max_v \left( \frac{\partial \mathcal{V}}{\partial x}, u + v \right) = 0
+    \]
+    с краевым условием \( \mathcal{V}(t_1, x) = h_+^2(x, \mathcal{M}) \).
+\end{theorem}
+
+Если решение \eqref{HJBI}, \eqref{HJBI_boundary} удается найти, то гарантирующая стратегия управления находится следубщим образом:
+\begin{equation}
+    \mathcal{U}_*(t,x) = \mathrm{argmin} \left\{ \left( \frac{\partial \mathcal{V}}{\partial x}, u \right) : u \in \mathcal{P}(t) \right\},
+\end{equation}
+если градиент \( \partial \mathcal{V} / \partial x \) существует в точке \( (t, x) \). Или в общем случае
+\begin{equation}
+    \mathcal{U}_*(t,x) = \left\{ u: \max_v \{ dh_+^2(x, \mathcal{W}[t]) / dt : v \in \mathcal{Q}(t) \} \le 0 \right\}.
+\end{equation}
+
+\begin{theorem}\label{dif_incl_theorem}
+    Все решения дифференциального включения
+    \begin{equation*}
+        \dot{x} \in \mathcal{U}_*(t,x) + v(t), \quad x_{\tau} = x(\tau) \in \mathcal{W}[t],
+    \end{equation*}
+    удовлетворяют включению \( x(t) \in \mathcal{W}[t] , \tau \le t \le t_1 \), и, следовательно, достигают целевого множества \( \mathcal{M} 
+     : x(t_1) \in \mathcal{M} \) при любом возмущении \( v(t) \). 
+\end{theorem}
+
+Таким образом синтезирующая стратегия \( \mathcal{U}_*(t,x) \) разрешает задачу целевого синтеза управлений при неопределенности.
+ Среди допустимых стратегий \( \mathcal{U}(t,x) \), удовлетворяющих включению \( \mathcal{U}(t,x) \subseteq \mathcal{U}_*(t,x) \), то есть
+ обеспечивающих выполнение теоремы \eqref{dif_incl_theorem}, находится стратегия "экстремального прицеливания", задаваемая условиями
+\begin{equation}
+    \mathcal{U}_e(t,x) = \partial_l k(t, -l) = \mathrm{arg min} \{(l^0, u) \mid u \in \mathcal{P}(t) \}.
+\end{equation}
+Здесь \( \partial_l k \) --- субдифференциал функции \( k(t, l) \) по переменной \( l \), \( k(t,l) = \rho(l \mid
+ \mathcal{P}(t)), l^0 = l^0(t, x) \ne 0 \) --- максимизатор задачи 
+\begin{equation}
+    h_+(x, \mathcal{W}[\tau]) = \max \{(l,x) - \rho(l \mid \mathcal{W}[\tau]) \mid (l,l) \le 1 \},
+\end{equation}
+причем \( l^0(t,x) = 0 \), если \( h_+(x, \mathcal{W}[\tau)) = 0 \).
+
+Как видно для поиска гарантирующей стратегии достаточно знать лишь сечения \( \mathcal{W}[t] \) функции цены.
+ \( \mathcal{V}(t,x) \). Поскольку интегрирование уравнения Гамильтона-Якоби, как правило, очень нетривиально, 
+ будем использовать аппроксимации сечения функции цены вместо самой функции. Таким образом сведем задачу к задаче
+ поиска аппроксимаций альтернированного интеграла Понтрягина.

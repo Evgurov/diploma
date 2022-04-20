@@ -1,7 +1,3 @@
-\newcommand{\anonsection}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}}
-\newcommand{\anonsubsection}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
-\newcommand{\anonsubsubsection}[1]{\subsubsection*{#1}\addcontentsline{toc}{subsubsection}{#1}}
-
 \documentclass[11pt]{article}
 
 \usepackage[T2A]{fontenc}
@@ -17,10 +13,14 @@
 
 \usepackage{amsmath, amssymb, amsfonts, amsthm}
 
-\newtheorem{theorem}{Теорема}
-\newtheorem{definition}{Определение} 
-\newtheorem{statement}{Утверждение}
-\newtheorem{property}{Свойство}
+\allowdisplaybreaks
+
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{definition}{Определение}[section]
+\newtheorem{statement}{Утверждение}[section]
+\newtheorem{property}{Свойство}[section]
+\newtheorem{assumption}{Предположение}[section]
+\newtheorem{lemma}{Лемма}[section]
 
 \geometry{a4paper}
 \sloppy
