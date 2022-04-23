@@ -558,7 +558,7 @@
 Таким образом синтезирующая стратегия \( \mathcal{U}_*(t,x) \) разрешает задачу целевого синтеза 
  управлений при неопределенности. Среди допустимых стратегий \( \mathcal{U}(t,x) \), удовлетворяющих
  включению \( \mathcal{U}(t,x) \subseteq \mathcal{U}_*(t,x) \), то есть обеспечивающих выполнение
- теоремы \eqref{dif_incl_theorem}, находится стратегия "экстремального прицеливания", задаваемая
+ теоремы \eqref{dif_incl_theorem}, находится стратегия "экстремального прицеливания" , задаваемая
  условиями
 \begin{equation}
     \mathcal{U}_e(t,x) = \partial_l k(t, -l) = \mathrm{arg min} \{(l^0, u) \mid u \in \mathcal{P}(t) \}.
@@ -574,3 +574,174 @@
  цены \( \mathcal{V}(t,x) \). Поскольку интегрирование уравнения Гамильтона-Якоби, как правило, очень 
  нетривиально, будем использовать аппроксимации сечения функции цены вместо самой функции. Таким 
  образом сведем задачу к задаче поиска аппроксимаций альтернированного интеграла Понтрягина.
+
+\section{Эллипсоидальные аппроксимации множества разрешимости}
+Будем рассматривать систему
+\begin{equation*}
+    \dot{x} = u + v
+\end{equation*}
+с эллипсоидальными ограничениями
+\begin{equation*}
+    u \in \mathcal{E}(p(t), P(t)), \quad v \in \mathcal{E}(q(t), Q(t)), \quad \mathcal{M} = 
+     \mathcal{E}(m, M).
+\end{equation*}
+Здесь функции \( p(t), q(t), P(t), Q(t) \) предполагаются заданными и непрерывными. Вектор \( m \) и
+ матрица \( M \) фиксированы. Эллипосоиды задаются своим центром и матрицей следующим образом:
+ 
+\begin{equation}
+    \mathcal{E}(a, Q) = \left\{ x : (x - a, Q^{-1}(x - a)) \le 1 \right\}, \quad x \in \mathbb{R}^n,
+\end{equation}
+где \( Q > 0 \).
+
+Приведем для начала основные утверждения эллипсоидального исчисления, необходимые в дальнейшем. Все
+ эти результаты подробно описаны в \cite{ellips_calculus}.
+
+\begin{theorem}
+    Пусть \( \mathcal{E}_1(a_1, Q_1), \mathcal{E}_2(a_2, Q_2) \) --- пара невырожденных эллисоидов.
+     Рассмотрим семейства матриц:
+    \begin{itemize}
+        \item \( Q(p) \) --- параметрическое семейство матриц
+        \begin{equation*}
+            \begin{gathered}
+                Q(p) = (1 + p^{-1})Q_1 + (1 + p) Q_2,\\
+                p \in \Pi^+ = \left[ \lambda_{\mathrm{min}}^{1/2}, \lambda_{\mathrm{max}}^{1/2} 
+                 \right]
+            \end{gathered}
+        \end{equation*}
+        где \( \lambda_{\mathrm{min}} > 0, \lambda_{\mathrm{max}} < \infty \) --- относительные
+         собственные
+        значения пары матриц \( Q_1, Q_2 \), или, иначе, корни уравнения
+        \begin{equation*}
+            \det (Q_1 - \lambda Q_2) = 0.
+        \end{equation*}
+        Обозначим также
+        \begin{equation*}
+            \Pi^- = \Pi^+ \cap(1, \lambda_{\mathrm{min}})
+        \end{equation*}
+        \item \( Q_+[S], Q_-[S] \) --- параметрические семейства матриц:
+        \begin{equation*}
+            \begin{gathered}
+                Q_+[S] = S^{-1}[(S Q_1 S^T)^{1/2} + (S Q_2 S^T)^{1/2}]^2 {S^T}^{-1}, \\
+                Q_+[S] = S^{-1}[(S Q_1 S^T)^{1/2} - (S Q_2 S^T)^{1/2}]^2 {S^T}^{-1},
+            \end{gathered}
+        \end{equation*}
+        где
+        \begin{equation*}
+            S \in \Sigma = {S \in \mathcal{L}(\mathbb{R}^n, \mathbb{R}^n): S^T = S, |S| \ne 0}.
+        \end{equation*}
+    \end{itemize}
+    Для этих семейств справедливы следующие включения:
+    \begin{equation}
+        \mathcal{E}_1 + \mathcal{E}_2 \subseteq \mathcal{E}(a_1 + a_2, Q(p)), \quad \forall p \in \Pi^+
+    \end{equation}
+    \begin{equation}
+        \mathcal{E}_1 + \mathcal{E}_2 \supseteq \mathcal{E}(a_1 + a_2, Q_+[S]), \quad \forall S \in \Sigma
+    \end{equation}
+    \begin{equation}
+        \mathcal{E}_1 \dot{-} \mathcal{E}_2 \subseteq \mathcal{E}(a_1 - a_2, Q_-[S]), \quad \forall S \in \Sigma
+    \end{equation}
+    \begin{equation}
+        \mathcal{E}_1 \dot{-} \mathcal{E}_2 \supseteq \mathcal{E}(a_1 - a_2, Q(-p)), \quad \forall p \in \Pi^-
+    \end{equation}
+    При этом имеют место следующие точные представления:
+    \begin{equation}
+        \mathcal{E}_1 + \mathcal{E}_2 = \bigcap \left\{ \mathcal{E}(a_1 + a_2, Q(p)), \forall p \in \Pi^+ \right\}
+    \end{equation}
+    \begin{equation}
+        \mathcal{E}_1 + \mathcal{E}_2 = \bigcup \left\{ \mathcal{E}(a_1 + a_2, Q_+[S]), \forall S \in \Sigma \right\}
+    \end{equation}
+    \begin{equation}
+        \mathcal{E}_1 \dot{-} \mathcal{E}_2 = \bigcap \left\{ \mathcal{E}(a_1 - a_2, Q_-[S]), \forall S \in \Sigma \right\}
+    \end{equation}
+    \begin{equation}
+        \mathcal{E}_1 \dot{-} \mathcal{E}_2 = \overline{ \bigcup \left\{ \mathcal{E}(a_1 - a_2, Q(-p)), \forall p \in \Pi^- \right\} }
+    \end{equation}
+\end{theorem}
+
+Более того представляется возможным доказать следующее утверждение(См. \cite{ellips_calculus}), позволяющее
+ строить наиболее "точные" внутренние и внешние оценки для суммы и разности двух эллипсоидов. 
+
+\begin{theorem}
+    \begin{itemize}
+        \item Пусть \( \mathcal{E}_1 + \mathcal{E}_2 \subseteq \mathcal{E} \), тогда существует значение
+         параметра \( p \in \Pi^+ \) такое, что
+        \begin{equation}
+            \mathcal{E}_1 + \mathcal{E}_2 \subseteq \mathcal{E}(a_1 + a_2, Q(p)) \subseteq \mathcal{E}.
+        \end{equation}
+        \item Пусть \( \mathcal{E}_1 + \mathcal{E}_2 \supseteq \mathcal{E} \), тогда существует матрица
+         \( S \in \Sigma \) такая, что
+        \begin{equation}
+            \mathcal{E}_1 + \mathcal{E}_2 \supseteq \mathcal{E}(a_1 + a_2, Q_+[S]) \supseteq \mathcal{E}.
+        \end{equation}
+        \item Пусть \(\mathrm{int}(\mathcal{E}_1 \dot{-} \mathcal{E}_2) \ne \varnothing \) и \( \mathcal{E}_1
+         \dot{-} \mathcal{E}_2 \supseteq \mathcal{E} \), тогда существует значение параметра \( p \in 
+         \Pi^- \) такое, что
+        \begin{equation}
+            \mathcal{E}_1 \dot{-} \mathcal{E}_2 \supseteq \mathcal{E}(a_1 - a_2, Q(-p)) \supseteq \mathcal{E}.
+        \end{equation}
+        \item Пусть \(\mathrm{int}(\mathcal{E}_1 \dot{-} \mathcal{E}_2) \ne \varnothing \) и \( \mathcal{E}_1
+         \dot{-} \mathcal{E}_2 \subseteq \mathcal{E} \), тогда существует матрица \( S \in  \Sigma \) 
+         такая, что
+        \begin{equation}
+            \mathcal{E}_1 \dot{-} \mathcal{E}_2 \subseteq \mathcal{E}(a_1 - a_2, Q_-[S]) \subseteq \mathcal{E}.
+        \end{equation}
+    \end{itemize}
+\end{theorem}
+
+Отправной точкой для построения оценок множества разрешимости является тот факт, что функция 
+ \( \mathcal{W}[t] \) в условиях невырожденности предположения \eqref{assumption_nonempty} является 
+ решением эволюционного уравнения.
+
+\begin{theorem}
+    Многозначная функция \( \mathcal{W}[t] \) удовлетворяет при всех \( t \in [t_0, t_1 ]\) 
+     эволюционному уравнению
+    \begin{equation}\label{evolution_equation}
+        \lim_{\sigma \to 0} \sigma^{-1} h_+ \left( \mathcal{W}[t - \sigma], \left( \mathcal{W}[t] - 
+         \sigma \mathcal{E}(p(t), P(t)) \right) \dot{-} \sigma \mathcal{E}(q(t), Q(t)) \right) = 0,
+         \quad \mathcal{W}[t_1] = \mathcal{M}.
+    \end{equation}
+    и это решение максимально по включению относительно всех других решений этого уравнения. 
+\end{theorem}
+
+При этом мы будем заинтересованы именно во внутренних аппроксимациях множества разрешимости, так как
+ построение управления по схеме описанной в следующем разделе, "удерживающее" траекторию внутри такой
+ аппроксимации будет гарантировать попадание в целевое множество. Поэтому будем искать максимальное 
+ по включению эллипсоидальное решение \eqref{evolution_equation}. В связи с этим справедлива следующая
+
+\begin{theorem}
+    Эллипсоидозначная функция \( \mathcal{E}_-[t] = \mathcal{E}(x^*, X_-(t)) \), определяемая
+     дифференциальными уравнениями:
+    \begin{equation}\label{dif_center}
+        \dot{x^*} = p(t) + q(t),
+    \end{equation}
+    а также
+    \begin{equation}\label{dif_matrix}
+        \begin{gathered}
+            \dot{X_-} = \pi(t) X_- + \pi^{-1}(t) Q(t) - \\
+             - H^{-1}(t) [(H(t) P(t) H^T(t))^{1/2} (H(t) X_-(t) H^T(t))^{1/2} + \\
+             + (H(t) X_-(t) H^T(t))^{1/2}(H(t) P(t) H^T(t))^{1/2}] {H^T}^{-1}(t),
+        \end{gathered}
+    \end{equation}
+    с краевыми условиями соответственно
+    \begin{equation*}\label{dif_boundary}
+        x(t_1) = m, \quad X_-(t_1) = M.
+    \end{equation*}
+    является решением \eqref{evolution_equation}. Здесь функции \( \pi(t) > 0 \) и \( H(t) = H^T(t) > 0 \)
+     выступают в качестве параметров.
+    
+    При этом для любого вектора \( l \in \mathbb{R}^n \) сущетсвуют функции \( \pi(t), H(t) \) такие,
+     что
+    \begin{equation}
+        \rho(l \mid \mathcal{W}[t]) = \rho(l \mid \mathcal{E}(x^*, X_-(t | \pi(\cdot), H(\cdot))))
+    \end{equation}
+    что означает, что построенный эллипсоид \( \mathcal{E} \) является максимальным по включению
+     решением \eqref{evolution_equation}. 
+\end{theorem}
+
+\section{Эллипсоидальный синтез управлений}
+
+
+
+
+
+
