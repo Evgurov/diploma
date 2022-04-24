@@ -565,7 +565,7 @@
 \end{equation}
 Здесь \( \partial_l k \) --- субдифференциал функции \( k(t, l) \) по переменной \( l \), \( k(t,l)
  = \rho(l \mid \mathcal{P}(t)), l^0 = l^0(t, x) \ne 0 \) --- максимизатор задачи 
-\begin{equation}
+\begin{equation}\label{extr_problem}
     h_+(x, \mathcal{W}[\tau]) = \max \{(l,x) - \rho(l \mid \mathcal{W}[\tau]) \mid (l,l) \le 1 \},
 \end{equation}
 причем \( l^0(t,x) = 0 \), если \( h_+(x, \mathcal{W}[\tau)) = 0 \).
@@ -739,6 +739,61 @@
 \end{theorem}
 
 \section{Эллипсоидальный синтез управлений}
+Следуя предыдущим разделам, для вычисления стратегии управления требуется найти множество разрешимости
+ \( \mathcal{W}[\cdot] \), определить значение функции цены \( \mathcal{V}(t,x) = d^2(x(t),
+ \mathcal{W}(t)) \) и её градиент, решить задачу \eqref{extr_problem}. Для множеств произвольной формы
+ все эти задачи, вообще говоря, представляют большую сложность. Поэтому основная идея эллипсоидального
+ синтеза состоит в замене \( \mathcal{W}[t] \) некоторой его внутренней эллипсоидальной аппроксимацией,
+ и применении вышеописанной схемы к ней. Это даёт:
+
+\begin{equation}\label{control}
+    \mathcal{U}_-(t,x) = 
+     \begin{cases}
+        \mathcal{E}(p(t), P(t)), & \text{если} x \in \mathcal{E}_-[t], \\
+        p(t) - P(t)l^0(l^0, P(t)l^0)^{-1/2}, & \text{если} x \notin \mathcal{E}_-[t],
+     \end{cases}
+\end{equation}
+где \( l^0 = l^0(t,x) \) --- единичный вектор, максимизатор задачи
+\begin{equation}
+    h_+(x, \mathcal{E}_-[t]) = (l^0,x) - \rho(l^0 \mid \mathcal{E}_-[t]) = \max\{(l,x) - \rho(l \mid 
+     \mathcal{E}_-[t]) \mid \| l \| \le 1 \}.
+\end{equation}
+
+Последняя задача теперь может быть решена однозначно. Если 
+\begin{equation}
+    s^0 = \text{argmin}\{ \| x - s \| : s \in \mathcal{E}_-[t], x = x(t) \},
+\end{equation}
+то можно положить \( l^0 = k(x(t) - s^0), k > 0 \), так что вектор \( l^0 \) будет градиентом функции
+\( h_+(x, \mathcal{E}_-[t]) \) при фиксированном \( t \). 
+
+\begin{lemma}
+    Рассмотрим невырожденный эллипсоид \( \mathcal{E} = \mathcal{E}(x^*, X) \) и вектор \( x \notin 
+     \mathcal{E}(x^*, Q). \) Тогда градиент
+    \begin{equation*}
+        l^0 = \partial h_+(x, \mathcal{E}(x^*, X)) / \partial x
+    \end{equation*}
+    может быть выражен как 
+    \begin{equation}
+        l^0 = \frac{x - s^0}{\| x - s^0 \|}, \quad s^0 = (I + \lambda X^{-1})^{-1}(x - x^*) + x^*.
+    \end{equation}
+    Здесь множитель лагранжа \( \lambda > 0 \) --- единственный корень уравнения \( f(\lambda) = 0 \),
+    где
+    \begin{equation*}
+        f(\lambda) = ((I + \lambda X^{-1})^{-1}(x - x^*), X^{-1}(I + \lambda X^{-1})^{-1}(x - x^*))^{-1} - 1.
+    \end{equation*}
+\end{lemma}
+
+При этом понятно, что при известных \( x^*, X \) параметр \( \lambda \) может быть представлен 
+ единственным образом как \( \lambda = \lambda(x) \).
+
+Выражение для управления \eqref{control} является следствием следующего факта:
+\begin{lemma}
+    Пусть задан эллипсоид \( \mathcal{E}(p, P) \). Тогда минимизатор \( u^* \) задачи
+    \begin{equation*}
+        \min\{l^0, u) \mid u \in mathcal{E}(p, P)) \} = (l, u^*), \quad l \ne 0, 
+    \end{equation*}
+    есть вектор \( u^* = p - Pl(l, Pl)^{-1/2} \).
+\end{lemma}
 
 
 
