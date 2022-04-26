@@ -1,0 +1,146 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+
+\usetheme{Madrid}
+
+
+\title[ВКР]
+{Гамильтонов формализм для задачи гарантированного синтеза управлений при геометрической неопределенности}
+
+\author[Е. В. Гуров]
+{студент 4 курса Е. В. Гуров \\
+научный руководитель --- академик, д.ф.-м.н., проф. А. Б. Куржанский}
+
+\institute[СА]
+{ Кафедра системного анализа \\
+факультета ВМК МГУ имени М.В. Ломоносова}
+
+\date[2 июня 2022 г.]
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{Постановка задачи}
+
+Рассматривается система
+\begin{equation*}
+    \dot{x} = A(t)x + B(t)u + C(t)v(t)
+\end{equation*}
+с непрерывными по \( t \) матрицами \( A(t), B(t), C(t) \).
+\begin{itemize}
+    \item \( x \in \mathbb{R}^n \) --- вектор состояния системы
+    \item \( u \in \mathbb{R}^p \) --- управление
+    \item \( v \in \mathbb{R}^q \) --- некоторое неизвестное внешнее возмущение
+\end{itemize}
+При этом достоверно известны "геометрические" \ ограничения на помеху, а также на управление:
+\begin{equation*}
+    v(t) \in \mathcal{Q}(t), \quad u(t) \in \mathcal{P}(t).
+\end{equation*}
+ Здесь \( \mathcal{P}(t) \) и \( \mathcal{Q}(t) \) --- заданные многозначные
+ функции с выпуклыми компактными значениями, непрерывно зависящие от времени.
+ 
+ Задано также компактное целевое множество \( \mathcal{M} \in \text{comp} \, \mathbb{R}^n \).
+
+\end{frame}
+
+\begin{frame}
+
+Задача синтеза управления при неопределенности состоит в отыскании множества разрешимости \( \mathcal{W}(\tau, t_1, \mathcal{M}) = \mathcal{W}[\tau] \) и позиционной стратегии управления \( u = \mathcal{U}(t,x) \) таких, что все решения дифференциального включения
+ \begin{equation*}\label{dif_inclusion}
+    \dot{x} \in A(t)x + B(t)\mathcal{U}(t,x) + C(t)v(t), \quad t_0 \le t \le t_1, 
+\end{equation*}
+выпущенные из любой начальной позиции \( \{\tau, x_{\tau}\}, \, x_{\tau} = x(\tau), \, x_{\tau} \in \mathcal{W}(\tau, t_1, \mathcal{M}), \, \tau \in [t_0, t_1) \), достигали бы целевого множества \( \mathcal{M} \) в момент времени \( t_1 \) при любом внешнем неизвестном возмущени \( v(t) \in \mathcal{Q}(t) \). 
+
+\end{frame}
+
+\begin{frame}{Редукция системы}
+Приведем вначале систему к более простому виду
+\begin{equation*}
+    \dot{x} = u + v
+\end{equation*}
+с новыми ограничениями
+\begin{equation*}
+    u \in \mathcal{P}_0(t), \quad v \in \mathcal{Q}_0(t),
+\end{equation*}
+где \( \mathcal{P}_0(t) = G(t_1, t) B(t) \mathcal{P}(t), \, \mathcal{Q}_0 = G(t_1,t)C(t)\mathcal{Q}(t) \) и \( G(t,t_1) \) --- фундаментальная матрица однородного уравнения. Для этого сделаем замену \( x(t) = G(t_1, t)x(t) \).
+\end{frame}
+
+\begin{frame}{Уравнение Гамильтона-Якоби-Беллмана}
+Введем \emph{функцию цены}
+\begin{equation*}
+    \mathcal{V} = \min_{\mathcal{U}} \max_{x(\cdot)} \{\mathcal{I}(t,x) \mid \mathcal{U} \in 
+     U_{\mathcal{P}}, \, x(\cdot) \in \mathcal{X}_{\mathcal{U}}(\cdot) \},
+\end{equation*}
+где
+\[
+     \mathcal{I}(t,x) = d^2(x[t_1], \mathcal{M})
+\]
+и \( \mathcal{X}_{\mathcal{U}}(\cdot) \) --- множество всех траекторий \( x(\cdot) \) включения
+\begin{equation*}
+    \dot{x} \in \mathcal{U}(t,x) + \mathcal{Q}(t), \quad x(\tau) = x,
+\end{equation*}
+порожденных заданной стратегией \( \mathcal{U} \in U_{\mathcal{P}} \).
+
+В таком случае для функции \( \mathcal{V}(t,x) \) можно составить следующее уравнение 
+ Гамильтона-Якоби-Беллмана-Айзекса:
+\begin{equation*}
+    \frac{\partial \mathcal{V}}{\partial t} + \min_u \max_v \left( \frac{\partial \mathcal{V}}
+     {\partial x}, u + v \right) = 0, \quad u \in \mathcal{P}(t), \ v \in \mathcal{Q}(t),
+\end{equation*}
+с граничным условием
+\begin{equation*}
+    \mathcal{V}(t_1, x) = d^2(x, \mathcal{M}).
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Последовательный максимин}
+    Перейдем к другой интерпретации функции цены \( \mathcal{V}(t,x) \). Рассмотрим интервал 
+ \( \tau \le t \le t_1 \) и построим его разбиение \( \Sigma_k = \{ \sigma_1, \dots, \sigma_k \} \). Для данного разбиения рассмотрим рекуррентные соотношения
+\small
+\begin{equation*}
+    V_k^+(t_1 - \sigma_1, x) = \left\{ \max_v \min_u d^2(x(t_1), \mathcal{M}) \mid t_1 -
+     \sigma_1 \le t \le t_1, \ x(t_1 - \sigma_1) = x \right\},
+\end{equation*}
+
+\begin{align*}
+    V_k^+(t_1 - \sigma_1 - \sigma_2, x) = \left\{ \max_v \min_u V_k^+(t_1 - \sigma_1, x(t_1 -
+     \sigma_1)) \mid  \\
+    \mid t_1 - \sigma_1 - \sigma_2 \le t \le t_1 - \sigma_1, \right. \ x(t_1 - \sigma_1 - \sigma_2) = x \Big\},
+\end{align*}
+\normalsize
+
+и так далее. Наконец в точке \( \tau = t_1 - \sum\limits_{i = 1}^k \sigma_i \):
+\small
+\begin{equation*}
+    V_k^+(\tau, x) = \left\{ \max_v \min_u V_k^+ (\tau + \sigma_k, x(\tau + \sigma_k)) \mid
+     \tau \le t \le \tau + \sigma_k, \ x(\tau) = x \right\},
+\end{equation*}
+\normalsize
+где \( v(t) \in \mathcal{Q}(t), u(t) \in  \mathcal{P}(t) \) почти всюду на соответствующих
+ интервалах. Всюду предполагаем, что "максимины" \ существуют.
+\end{frame}
+
+\begin{frame}
+
+\begin{lemma}
+    При
+    \[ 
+        \max_{i = 1,\dots,k} \{\sigma_i\}, \quad k \to \infty, \quad \sum_{i = 1}^k \sigma_i = 
+         t_1 - \tau, 
+    \]
+    существует поточечный предел
+    \[
+        V^+(\tau, x) = \lim_{k \to \infty} V_k^+(\tau, x),
+    \]
+    не зависящий от выбора разбиения \( \Sigma_k \).
+\end{lemma}
+
+\end{frame}
+
+\end{document}
