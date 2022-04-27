@@ -11,16 +11,16 @@ function PlotTube(x0, v, p, P, q, Q, T)
     i = 1;
     plot3(x_op(1, :, i), x_op(2, :, i), x_op(3, :, i), 'color', 'b', 'LineWidth', 2);
     hold on;
-    for i = 2 : 3 : length(T) - 1
+    for i = 2 : 20 : length(T) - 1
         plot3(x_op(1, :, i), x_op(2, :, i), x_op(3, :, i), 'color', 'r');
     end
     i = length(T);
     plot3(x_op(1, :, i), x_op(2, :, i), x_op(3, :, i), 'color', 'b', 'LineWidth', 2);
     
-    x = SolveSystem(x0, flip(T, 2), v, flip(q, 2), flip(Q, 3), p, P);
+    x = SolveSystem(x0, flip(T, 2), v, flip(q, 3), flip(Q, 3), p, P);
     
     x(3, :) = flip(T, 2);
-    plot3(x(1,:), x(2, :), x(3,:), 'LineWidth', 2);
+    plot3(x(1,:), x(2, :), x(3,:), 'Color', 'b', 'LineWidth', 2);
     
     hold off;
     axis equal;

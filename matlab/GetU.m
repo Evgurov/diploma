@@ -2,7 +2,7 @@ function u = GetU(x, xc, E, p, P)
     if InEllips(x, xc, E)
         u = p;
     else 
-        eps = 0.01;
+        eps = 0.001;
         f = @(lam) dot((eye(2) + lam * E^(-1))^(-1) * (x - xc), E^(-1) * (eye(2) + lam * E^(-1))^(-1)*(x - xc)) - 1;
         lam = 0;
         while f(lam) > 0
