@@ -17,9 +17,9 @@ function PlotTube(x0, v, p, P, q, Q, T)
     i = length(T);
     plot3(x_op(1, :, i), x_op(2, :, i), x_op(3, :, i), 'color', 'b', 'LineWidth', 2);
     
-    x = SolveSystem(x0, T, v, q, Q, p, P);
+    x = SolveSystem(x0, flip(T, 2), v, flip(q, 2), flip(Q, 3), p, P);
     
-    x(3, :) = T;
+    x(3, :) = flip(T, 2);
     plot3(x(1,:), x(2, :), x(3,:), 'LineWidth', 2);
     
     hold off;
