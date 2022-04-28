@@ -2,7 +2,7 @@
 
 Рассмотрим систему
 \begin{equation}\label{problem}
-    \dot{x} = A(t)x + B(t)u + C(t)v(t)
+    \dot{x} = A(t)x(t) + B(t)u(t) + C(t)v(t)
 \end{equation}
 с непрерывными матрицами \( A(t), B(t), C(t) \). Где \( x \in \mathbb{R}^n \)
  --- \emph{вектор состояния} системы; \( u \in \mathbb{R}^p \) --- 
@@ -370,7 +370,7 @@
 и так далее. Наконец в точке \( \tau = t_1 - \sum\limits_{i = 1}^k \sigma_i \):
 \begin{equation*}
     V_k^-(\tau, x) = \left\{ \min_u \max_v  V_k^- (\tau + \sigma_k, x(\tau + \sigma_k)) \mid
-     \tau \le t \le \tau + \sigma_k, \ x(\tau) = x \right\},
+     \tau \le t \le \tau + \sigma_k, \ x(\tau) = x \right\}.
 \end{equation*}
 Для определенных таким образом функций имеют место аналогичные утверждения
 \begin{lemma}
@@ -790,7 +790,7 @@
 \begin{lemma}
     Пусть задан эллипсоид \( \mathcal{E}(p, P) \). Тогда минимизатор \( u^* \) задачи
     \begin{equation*}
-        \min\{l^0, u) \mid u \in mathcal{E}(p, P)) \} = (l, u^*), \quad l \ne 0, 
+        \min\{ (l^0, u) \mid u \in \mathcal{E}(p, P)) \} = (l, u^*), \quad l \ne 0, 
     \end{equation*}
     есть вектор \( u^* = p - Pl(l, Pl)^{-1/2} \).
 \end{lemma}
