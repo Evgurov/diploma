@@ -4,15 +4,20 @@
 \begin{equation}\label{problem}
     \dot{x} = A(t)x(t) + B(t)u(t) + C(t)v(t)
 \end{equation}
-с непрерывными матрицами \( A(t), B(t), C(t) \). Где \( x \in \mathbb{R}^n \)
- --- \emph{вектор состояния} системы; \( u \in \mathbb{R}^p \) --- 
- \emph{управление}, \( v \in \mathbb{R}^q \) --- \emph{внешнее возмущение},
- стесненные почти всюду по \( t \) некоторыми "геометрическими" ограничениями
-\[
+с непрерывными матрицами \( A(t), B(t), C(t) \). 
+Здесь 
+\begin{itemize}
+    \item \( x \in \mathbb{R}^n \) --- вектор состояния системы, 
+    \item \( u \in \mathbb{R}^p \) --- управление, 
+    \item \( v \in \mathbb{R}^q \) --- неизвестное внешнее возмущение,
+\end{itemize}
+на которые почти всюду по \( t \) наложены некоторые "геометрические"  \ 
+ ограничения:
+\begin{equation}\label{problem_bounds}
     u(t) \in \mathcal{P}(t), \quad v(t) \in \mathcal{Q}(t),
-\]
- где \( \mathcal{P}(t) \) и \( \mathcal{Q}(t) \) --- заданные многозначные
- функции с выпуклыми компактными значениями, непрерывно зависящие от времени. 
+\end{equation}
+ где \( \mathcal{P}(t) \) и \( \mathcal{Q}(t) \) --- заданные непрерывные по \( t \) 
+ многозначные функции с выпуклыми компактными значениями. 
 Управление может быть выбрано в одном из двух классов:
 \begin{itemize}
     \item в классе \( U \) программных управлений u = u(t) --- измеримых по
@@ -31,61 +36,78 @@
      компактными значениями. В этом случае дифференциальное включение имеет
      решение на всем отрезке времени для произвольного \( x^0 = x(t_0) \),
      то есть существует абсолютно непрерывная функция \( x(t) \),
-     удовлетворяющая дифференциальному включению почти всюду.[ссылка на
-     доказательство леммы филлипова(например)]} В этой работе речь пойдет 
-     именно про этот тип управлений.
+     удовлетворяющая дифференциальному включению почти всюду.} Далее речь пойдет
+     именно про этот тип управлений, как наиболее пригодный для решения задач с 
+     неопределенностью.
 \end{itemize}
 Важно отметить, что в задачах с неопределенностью эти два типа управлений
- существенно не взимозаменямы. Имея позиционное управление, подстановкой его
+ существенно не взимозаменяемы. Имея позиционное управление, подстановкой его
  и решением задачи относительно \( u(t) \), уже нельзя однозначно найти
- программный аналог.
+ программный аналог. Перейдем к постановке задачи синтеза управлений при 
+ неопределенности.
 
-Пусть задано "целевое" множество \( \mathcal{M} \in \text{comp} \, \mathbb{R}^n \).
-Задача \emph{о синтезе управления при неопределенности} состоит в отыскании
- \emph{множества разрешимости} \( \mathcal{W}(\tau, t_1, \mathcal{M}) = 
- \mathcal{W}[\tau] \) и \emph{позиционной стратегией управления}
+Пусть задано "целевое" \ множество \( \mathcal{M} \in \text{comp} \,
+ \mathbb{R}^n \). Задача о синтезе управлений при неопределенности состоит 
+ в отыскании множества разрешимости \( \mathcal{W}(\tau, t_1, \mathcal{M}) = 
+ \mathcal{W}[\tau] \) и позиционной стратегии управления
  \( \mathcal{U}(t,x) \in U_{\mathcal{P}} \) таких, что все решения
  \eqref{dif_inclusion}, выпущенные из любой начальной позиции \( \{\tau, 
  x_{\tau}\}, \, x_{\tau} = x(\tau), \, x_{\tau} \in \mathcal{W}(\tau, t_1, 
- \mathcal{M}), \, \tau \in [t_0, t_1) \), достигали бы \emph{целевого множества}
- \( \mathcal{M} \) в момент времени \( t_1 \) при любом внешнем возмущени
- \( v(t) \in \mathcal{Q}(t) \). 
-
-Задача имеет смысл в случае \( \mathcal{W}(\tau, t_1, \mathcal{M}) \ne 
- \varnothing \). Многозначная функция \( \mathcal{W}[t] = \mathcal{W}(t, 
- t_1,\mathcal{M}) \) называется \emph{трубкой разрешимости} или 
- \emph{мостом Красовского}, и является ключевым элементом в решении задачи.
- Существенным обстоятельством является возможность вычислить эту функцию 
- при помощи некоторого многозначного инетграла --- \emph{альтернированного 
- интеграла Л.С. Понтрягина}.
+ \mathcal{M}), \, \tau \in [t_0, t_1) \), достигали бы целевого множества
+ \( \mathcal{M} \) в момент времени \( t_1 \) при любом внешнем возмущении
+ \( v(t) \in \mathcal{Q}(t) \). То есть для данного целевого множества и 
+ геометрических ограничений на управление и помеху необходимо найти трубку
+ разрешимости, состоящую их всех состояний системы в различные моменты времени
+ \( t \), для которых вне зависимости от помехи существовала бы некоторая 
+ стратегия управления, приводящая систему в требуемое множество. Также 
+ для каждого такого состояния необходимо отыскать соответствующее целевое 
+ управление. Очевидно, что задача имеет смысл в случае
+ \( \mathcal{W}(\tau, t_1, \mathcal{M}) \ne \varnothing \).
+ 
+Многозначная функция \( \mathcal{W}[t] = \mathcal{W}(t, t_1,\mathcal{M}) \) 
+ называется трубкой разрешимости или мостом Красовского. Далее будет показано,
+ что трубка разрешимости может быть представлена в виде некоторого многозначного
+ интеграла, который называют альтернированным интегралом Л.С. Понтрягина.
 
 \section{Альтернированный интеграл Понтрягина}
-Напомним определение этого интеграла. Для этого приведем вначале систему 
- \eqref{problem} к более простому виду
+Для начала приведем исходную систему \eqref{problem} к более простому виду.
+ Для этого сделаем невырожденную замену \( x(t) = G(t_1, t)x(t) \), где 
+ \( G(t,t_1) \) --- фундаментальная матрица однородного уравнения 
+ \eqref{problem}. В таком случае система примет вид:
 \begin{equation}\label{simplified_problem}
-    \dot{x} = u + v
+    \dot{x} = u + v,
 \end{equation}
- с новыми ограничениями
+ а ограничения на управление и помеху изменятся:
 \begin{equation}\label{simplified_bounds}
-    u \in \mathcal{P}_0(t), \quad v \in \mathcal{Q}_0(t),
+ \begin{gathered}
+    u \in \mathcal{P}_0(t), \quad v \in \mathcal{Q}_0(t); \\
+    \mathcal{P}_0(t) = G(t_1, t) B(t) \mathcal{P}(t), \, \mathcal{Q}_0 = 
+     G(t_1,t)C(t)\mathcal{Q}(t).
+ \end{gathered}
 \end{equation}
- где \( \mathcal{P}_0(t) = G(t_1, t) B(t) \mathcal{P}(t), \, \mathcal{Q}_0 = 
- G(t_1,t)C(t)\mathcal{Q}(t) \) и \( G(t,t_1) \) --- фундаментальная матрица
- однородного уравнения \eqref{problem}. Для этого сделаем \emph{невырожденную замену} 
- \( x(t) = G(t_1, t)x(t) \). Далее вместо \eqref{problem} будем
- рассматривать \eqref{simplified_problem} с ограничениями \eqref{simplified_bounds}, 
+Далее вместо \eqref{problem} с ограничениями \eqref{problem_bounds} будем 
+ рассматривать \eqref{simplified_problem} с ограничениями \eqref{simplified_bounds},
  опуская индекс нуль.
-\begin{definition}
+
+Естественно было бы определенить множество разрешимости двумя способами в терминах
+ максимина и минимакса. Начнем с первого из них.
+
+ \begin{definition}
     Множеством разрешимости максиминного типа назовем множество
-    \begin{equation}\label{maxmin_solvability_set}
+    \begin{equation*}
         W[\tau] = W(\tau, t_1, \mathcal{M}) = \left\{ x: \, \max_v \min_u
          d^2(x(t_1), \mathcal{M}) \le 0 \mid x(\tau) = x \right\}, 
-    \end{equation}
+    \end{equation*}
      где \( d^2(x. \mathcal{M}) = \min\limits_z \{ (x-z,x-z) \mid z \in 
      \mathcal{M} \} \) и \( x(t_1) \) --- конец в момент \( t_1 \) траектории
      \( x(t) \) системы \eqref{simplified_problem}, выпущенной из положения 
-     \( x(\tau) = x \).
+     \( x(\tau) = x \) при некоторых \( u(\cdot) \in U \) и \( v(t) \in 
+     \mathcal{Q}(t) \).
 \end{definition}
+
+Такое множество имеет аналитическое представление, а именно справедливо
+ утверждение:
+
 \begin{statement}
     Для \( W[t] \) справедливо представление:
     \begin{equation}\label{solvability_set_format}
@@ -93,18 +115,20 @@
          (-\mathcal{P}(t)) dt \right) \dot{-} \int\limits_t^{t_1} \mathcal{Q}(t) dt,
          \quad \tau \le t \le t_1.
     \end{equation}
-    Здесь символ \( \mathcal{P} \dot{-} \mathcal{Q} \) означает геометрическую(по 
-     Минковскому) разность двух множеств \( \mathcal{P}, \, \mathcal{Q}\). А именно,
+    Здесь символ \( \mathcal{P} \dot{-} \mathcal{Q} \) означает геометрическую
+     разность двух множеств \( \mathcal{P}, \, \mathcal{Q}\). А именно,
      \( c \in \mathcal{P} \dot{-} \mathcal{Q} \) тогда и только тогда, когда \(c +
      \mathcal{Q} \subseteq \mathcal{P} \).
 \end{statement}
 \begin{proof}
-    При заданных \( u \) и \( v \) значение на правом конце выражается как 
-    \[
+    При заданных \( u, v \) на интервале \( (t, t_1 ) \) значение на правом конце
+     выражается как 
+    \begin{equation*}
         x(t_1) = x(t) + \int\limits_t^{t_1}u(\tau)d\tau + \int\limits_t^{t_1}
         v(\tau)d\tau.
-    \]
-    В таком случае множество разрешимости очевидно представляется в виде
+    \end{equation*}
+    В таком случае множество разрешимости в терминах объединений и пересечений 
+     представляется в виде
     \begin{multline*}
         W(t, t_1, \mathcal{M}) = \bigcap\limits_{v \in \mathcal{Q}} 
          \bigcup\limits_{u \in \mathcal{P}} \left\{ x : x = x(t_1)
@@ -123,42 +147,41 @@
          \int\limits_t^{t_1}(- \mathcal{P}(\tau)) d\tau, \, \forall v(\tau) \in
          \mathcal{Q}(\tau) \right\}.
     \end{multline*}
-    Последнее в силу определения разности по Минковскому совпадает с правой частью
-     формулы \eqref{solvability_set_format}.
+    Последнее в силу определения геометрической разности совпадает 
+     \eqref{solvability_set_format}.
 \end{proof}
 
-Опишем формальную процедуру построения альтернированного интеграла. Для этого
- построим множество \( \mathcal{W}^* (\tau, t_1, \mathcal{M}) \), явялющееся
- суперпозицей множеств \( W(\tau, t_1, \mathcal{M}) \), определенных выше. Взяв
- интервал \( \tau \le t \le t_1 \), рассмотрим разбиение \( \Sigma_k = \{ \sigma_1,
+Опишем процедуру последовательного построения альтернированного интеграла. Взяв
+ интервал \( \tau \le t \le t_1 \), рассмотрим его разбиение \( \Sigma_k = \{ \sigma_1,
  \dots, \sigma_k \} \),
-\[
+\begin{equation*}
     t = t_1 - \sum_{i=1}^k \sigma_i, \dots, t_1 - \sigma_1, t_1, \quad \sigma_i > 0.
-\]
-На первом шаге, начав с момента \( t_1 \), найдем множество \( W[t_1 - \sigma_1] = 
+\end{equation*}
+На первом шаге, найдем множество \( W[t_1 - \sigma_1] = 
  W(t_1 - \sigma_1, t_1, \mathcal{M}) \). Вследствие \eqref{solvability_set_format}
  будем иметь
-\begin{equation}\label{first_iter}
+\begin{equation*}
      W(t_1 - \sigma_1, t_1, \mathcal{M}) = \left( \mathcal{M} + \int\limits_{t_1 - \sigma_1}
      ^{t_1}(-\mathcal{P}(\tau)) d\tau \right) \dot{-} \int\limits_{t_1 - \sigma_1}^{t_1}
      \mathcal{Q}(\tau)d\tau.
-\end{equation}
-Продолжая последовательную процедуру, имеем
-\begin{equation}
-    \begin{gathered}\label{second_iter}
+\end{equation*}
+В следующей точке разбиения, имея в виду уже построенное на предыдущем шаге множество получим
+\begin{equation*}
+    \begin{gathered}
         W(t_1 - \sigma_1 -\sigma_2, t_1 - \sigma_1, W[t_1 - \sigma_1]) = \left( W[t_1 - \sigma_1]
         + \int\limits_{t_1 - \sigma_1 - \sigma_2}^{t_1 - \sigma_1} (-\mathcal{P}(\tau))d\tau \right)
         \dot{-} \\
         \dot{-} \int\limits_{t_1 - \sigma_1 - \sigma_2}^{t_1 - \sigma_1} \mathcal{Q}(\tau) d\tau
     \end{gathered}
-\end{equation}
-и, в итоге, получаем
-\begin{equation}\label{pontr_iter}
+\end{equation*}
+Продолжая процедуру, на левом конце получим множество разрешимости в виде суперпозиции множеств, 
+ построенных для всех предыдущих точек разбиения:
+\begin{equation*}
     W(t, t + \sigma_k, W(t + \sigma_k, t + \sigma_k + \sigma_{k-1}, \dots, W(t_1 - \sigma_1, t_1,
     \mathcal{M}))) = \mathcal{I}(t, t_1, \mathcal{M}, \Sigma_k).
-\end{equation}
-В приведенной процедуре предполагается, что все возникающие множества \( W(\cdot) \) вида 
- \eqref{pontr_iter} непусты.
+\end{equation*}
+Для корректного построения предполагается, что все возникающие здесь множества непусты. Это может 
+ быть обеспечено следующим предположением:
 \begin{assumption}\label{assumption_nonempty}
     Существует такая непрерывная функция \( \beta(t) > 0, \, t \in [t_0, t_1] \), что все
      множества
@@ -174,60 +197,68 @@
     \end{equation}
     при \( j = 1, \dots, k \), каким бы ни было разбиение \( \Sigma_k \).
 \end{assumption}
-Предположение \eqref{assumption_nonempty} обеспечивает условие \( W(\tau, t_1, \mathcal{M}) = 
- \mathcal{I}(t, t_1, \mathcal{M}, \Sigma_k) \ne \varnothing \) для любого разбиения \( \Sigma_k \).
 
-Ниже всюду будем случитать предположение \eqref{assumption_nonempty} выполненым. Следует заметить,
- что данное замечание введено не только для облегчения выкеладок. В его отсутствие некоторые из
- утверждений, приводимых далее, могут оказаться неверными.
+Ниже всюду будем считать предположение \eqref{assumption_nonempty} выполненым. Отметим,
+ что данное предположение важно и без него дальнейшие утверждения могут быть неверны.
 
-Следуя \eqref{first_iter} --- \eqref{pontr_iter}, приходим к аналитическому выражению
+Следуя приведенной схеме, приходим к аналитическому выражению для "дискретного" \ множества
+ разрешимости.
+ 
 \begin{multline}\label{pontr_analytical}
-    \mathcal{I}(\tau, t_1, \mathcal{M}, \Sigma_k) = \left( \dots \left( \left( \mathcal{M} + 
+    \mathcal{I}(t, t_1, \mathcal{M}, \Sigma_k) = \left( \dots \left( \left( \mathcal{M} + 
      \int\limits_{t_1 - \sigma_1}^{t_1} (-\mathcal{P}(\tau)) d\tau \right) \dot{-} \int\limits_
      {t_1 - \sigma_1}^{t_1} \mathcal{Q}(\tau) d\tau \right) + \dots \dot{-} \right. \\
     \left. \int\limits_t^{t + \sigma_k} \mathcal{Q}(\tau) d\tau \right).
 \end{multline}
 
-Множества \( \mathcal{I} (t, t_1, \mathcal{M}, \Sigma_k) \) есть выпуклые компакты для любого
- разбиения \( \Sigma_k \). Рассмотрим хаусдорфов предел этих множеств при \( \max \{\sigma_i : 
- \ i = 1, \dots, k \} \to 0 \).
+При этом множества \( \mathcal{I} (t, t_1, \mathcal{M}, \Sigma_k) \) есть выпуклые компакты 
+ для любого разбиения \( \Sigma_k \).
 
- Напомним, что \emph{хаусдорфово полурасстояние} между компактами \( \mathcal{Q}, \mathcal{M} \)
- определяется как 
-\[ 
-    h_+(\mathcal{Q}, \mathcal{M}) = \max_x \min_z \{(x - z, x - z)^{1/2} \mid x \in \mathcal{Q}, 
-     z \in \mathcal{M} \},
-\]
-в то время как \emph{хаусдорфово расстояние} \( h(\mathcal{Q}, \mathcal{M}) = \max
- \{ h_+(\mathcal{Q}, \mathcal{M}), h_+(\mathcal{M}, \mathcal{Q}) \}. \)
+Для дальнейшего напомним определение хаусдорфова расстояния между выпуклыми компактными 
+ множествами.
+
+\begin{definition}
+    Хаусдорфово полурасстояние между компактами \( \mathcal{Q}, \mathcal{M} \)
+    определяется как 
+    \begin{equation*} 
+        h_+(\mathcal{Q}, \mathcal{M}) = \max_x \min_z \{(x - z, x - z)^{1/2} \mid x \in \mathcal{Q}, 
+        z \in \mathcal{M} \},
+    \end{equation*}
+    в то время как хаусдорфово расстояние:
+    \begin{equation*}
+        h(\mathcal{Q}, \mathcal{M}) = \max \{ h_+(\mathcal{Q}, \mathcal{M}), 
+         h_+(\mathcal{M}, \mathcal{Q}) \}.
+    \end{equation*}
+\end{definition}
+        
+Оказывается, что для построенных выше множеств \( \mathcal{I}(t, t_1, \mathcal{M}, \Sigma_k) \), при измельчении
+ рассмотренного разбиения, существует хаусдорфов предел, не зависящий от 
+ разбиения \( \Sigma_k \) (См. например \cite{lin_dif_chasing}). Это наталкивает на мысль о том,
+ что этот предел является действительным множеством разрешимости задачи \eqref{simplified_problem}.
 
 \begin{lemma}
     Существует хаусдорфов предел \( \mathcal{I}(t, t_1, \mathcal{M}) \)
-    \[
+    \begin{equation*}
         \lim h \left( \mathcal{I}(t, t_1, \mathcal{M}, \Sigma_k), \mathcal{I}(t, t_1, \mathcal{M})
          \right) = 0
-    \]
+    \end{equation*}
     при 
-    \[
+    \begin{equation*}
         \max\{\sigma_i: i = 1,\dots, k \} \to 0, \quad k \to \infty, \quad \sum_{i = 1}^k \sigma_i 
          = t_1 - t. 
-    \]
+    \end{equation*}
     Этот предел не зависит от способа разбиения \( \Sigma_k \).
 \end{lemma}
-Множество
-\begin{equation}\label{alt_sovability_region}
-    \mathcal{I}(t, t_1, \mathcal{M}) = \mathcal{W}^*(t,t_1,\mathcal{M}) = \mathcal{W}^*[t]
-\end{equation}
-будем называть \emph{альтернированной областью разрешимости} задачи \eqref{problem}, обозначая его 
- как 
-\[
+Множество \( \mathcal{I}(t, t_1, \mathcal{M}) \) будем называть \emph{альтернированной областью 
+ разрешимости} задачи \eqref{simplified_problem}. Фактически множество \( \mathcal{I}(t, t_1, 
+ \mathcal{M}) \) есть значение некоторого многозначного интеграла, известного как 
+ \emph{альтернированный интеграл Понтрягина}. Будем обозначать его как
+
+\begin{equation}
     \mathcal{I}(t, t_1, \mathcal{M}) = \int\limits_{t_1, \mathcal{M}}^t \left( (-\mathcal{P}(\tau))
      d\tau \dot{-} \mathcal{Q}(\tau) d\tau \right).
-\]
-Фактически множество \( \mathcal{I}(t, t_1, \mathcal{M}) \) есть значение некоторого многозначного
- интеграла, известного как \emph{альтернированный интеграл Понтрягина}. Этот интеграл детально
- описан в статье \cite{lin_dif_chasing}.
+\end{equation}
+
 
 \begin{lemma}
     Многозначное отображение \( \mathcal{W}^*(t, t_1, \mathcal{M}) \) удовлетворяет полугрупповому
