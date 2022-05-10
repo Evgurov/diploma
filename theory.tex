@@ -293,10 +293,10 @@
 \begin{definition}
     Множество разрешимости \( W^-[\tau] \) минимаксоного типа называется следующая совокупность
      векторов
-    \[
+    \begin{equation*}
         W_-[\tau] = W_-(\tau, t_1, \mathcal{M}) = \{ x : \min_u \max_v d^2(x(t_1),
          \mathcal{M}) \le 0 \mid x(\tau) = x \}.
-    \]
+    \end{equation*}
 \end{definition}
 Для введенного множества справедливо представление аналогичное представлению 
  \eqref{solvability_set_format}.
@@ -315,10 +315,10 @@
  \mathcal{M}) \), рассмотрим суперпозицию множеств \( W_-(t, t_1, \mathcal{M}) \) для произвольного
  разбиения \( \Sigma_k = \{ \sigma_1, \dots, \sigma_k\} \) отрезка \( \tau \le t \le t_1 \).
 
-\[
+\begin{equation*}
     W_-(t_1 - \sigma_1, t_1, \mathcal{M}) = \left( \mathcal{M} \dot{-} \int\limits_{t_1 - 
      \sigma_1}^{t_1} \mathcal{Q}(s) ds \right) + \int\limits_{t_1 - \sigma_1}^{t_1} (-\mathcal{P}(s))ds.
-\]
+\end{equation*}
 И далее приходим к выражению
 \begin{multline}\label{}
     \mathcal{I}_-(t, t_1, \mathcal{M}, \Sigma_k) = \left(\dots\left(\left(\mathcal{M} \dot{-}
@@ -327,19 +327,17 @@
     \left. + \int\limits_{t}^{t + \sigma_k} (-\mathcal{P}(\tau))) d\tau \right) .
 \end{multline}
 
-Формальная процедура, описанная выше, предполгает что все множества \( \mathcal{I}_-[\cdot]\) не пусты.
-Для этого необходимо принять
-\begin{assumption}
-    Существует непрерывная функция \( g(t) : [t_0, t_1] \to \mathbb{R}^n \) и число \( r \) такие,
-     что для любого разбиения \( \Sigma_k \) справедливо включение
-    \[
-        g \left(t_1 - \sum_{i = 1}^j \sigma_i \right) + rB \subseteq \mathcal{I}_-\left[ t_1 - 
+Здесь, как и прежде, предполгается, что возникающие множества не пусты. Для этого примем
+\begin{assumption}\label{assumption_nonempty_2}
+    Для произвольного разбиения существует непрерывная функция \( g(t) : [t_0, t_1] \to \mathbb{R}^n \)
+     и числа \( r_j \) такие, что
+    \begin{equation*}
+        g \left(t_1 - \sum_{i = 1}^j \sigma_i \right) + r_j B \subseteq \mathcal{I}_-\left[ t_1 - 
          \sum_{i = 1}^j \sigma_i \right], \quad j = 1, \dots, m.
-    \]
+    \end{equation*}
 \end{assumption}
 
-Для построенных таким образом множеств справедливы утверждения аналогичные лемме \eqref{lemma_haus_limit}
- и лемме \eqref{lemma_semigroup_property}.
+Для построенных таким образом множеств справедливо утверждение аналогичное лемме \eqref{lemma_haus_limit}
 
 \begin{lemma}
     Существует хаусдорфов предел \( \mathcal{I}_-(\tau, t_1, \mathcal{M}) \)
@@ -358,39 +356,49 @@
 Будем называть \( \mathcal{I}_-(\tau, t_1, \mathcal{M}) \) \emph{альтернированным 
  интегралом Понтрягина второго рода}.
 
-Отметим, что алтернированные интегралы соответствуют пределам разных информационных схем. Так,
- альтернированный интеграл Понтрягина предполагает появление текущей информации о помехах с опережением,
- в то время как интеграл второго рода --- с запаздыванием. Тем не менее, в пределе эти схемы дают
- один и тот же результат, а именно, справедливо утверждение.
+Можно заметить, что альтернированные интегралы разных типов соответствуют различным 
+ информационным схемам. Альтернированный интеграл Понтрягина предполагает появление 
+ информации о помехах с опережением, а интеграл второго рода --- с запаздыванием. 
+ Замечательно, что при условиях невырожденности \eqref{assumption_nonempty} и 
+ \eqref{assumption_nonempty_2} в пределе эти схемы дают один и тот же результат, а именно,
+ справедливо утверждение.
 
 \begin{theorem}
     Альтернированный интеграл Понтрягина совпадает с альтернированным интегралом второго рода:
-    \[
+    \begin{equation*}
         \mathcal{I}(t, t_1, \mathcal{M}) = \mathcal{I}_-(t, t_1, \mathcal{M}).
-    \]
+    \end{equation*}
 \end{theorem}
 
+Из вышесказанного можно сделать вывод, что множество разрешимости системы имеет явный вид и
+ представляется в виде альтернированного интерала, который можно считать дискретными методами,
+ зная опорные функции множеств в него входящих. Трудность в таком подходе возникает при попытке
+ подсчитать опорную функцию разности двух множеств, которая вообще говоря удовлетворяет
+\begin{equation*}
+    \rho(l \mid A \dot{-} B) = \text{conv}( \rho(l \mid A) - \rho(l \mid B)) \le \rho(l \mid A) -
+      \rho(l \mid B), \quad \forall l \in \mathbb{R}^n.
+\end{equation*}
+В связи с этим возникает необходимость весьма трудоемкого "овыпукления" \ разности опорных функций.
+Рассмотренный далее подход эллипсоидальных аппроксимаций позволяет избежать этой проблемы.
+
 \section{Функции цены}
-Применительно к данной задаче, рассмотрим подробно подход Гамильтонова формализма, позволяющий
- достаточно просто строить необходимые "гарантирующие" \ стратегии управления. 
+Применительно к данной задаче, рассмотрим подход к решению с помощью функций цены. Введем
 
-В связи с этим введем функцию цены 
-\begin{equation}
+\begin{equation*}
     \mathcal{V} = \min_{\mathcal{U}} \max_{x(\cdot)} \{\mathcal{I}(t,x) \mid \mathcal{U} \in 
-     U_{\mathcal{P}}, \, x(\cdot) \in \mathcal{X}_{\mathcal{U}}(\cdot) \},
-\end{equation}
-где
-\[
-     \mathcal{I}(t,x) = d^2(x[t_1], \mathcal{M})
-\]
-и \( \mathcal{X}_{\mathcal{U}}(\cdot) \) --- множество всех траекторий \( x(\cdot) \) включения
-\begin{equation}
+     U_{\mathcal{P}}, \, x(\cdot) \in \mathcal{X}_{\mathcal{U}}(\cdot) \}.
+\end{equation*}
+Здесь функционал
+\begin{equation*}
+     \mathcal{I}(t,x) = d^2(x[t_1], \mathcal{M}),
+\end{equation*}
+а \( \mathcal{X}_{\mathcal{U}}(\cdot) \) --- множество всех траекторий дифференциального включения
+\begin{equation*}
     \dot{x} \in \mathcal{U}(t,x) + \mathcal{Q}(t), \quad x(\tau) = x,
-\end{equation}
-порожденных заданной стратегией \( \mathcal{U} \in U_{\mathcal{P}} \).
+\end{equation*}
+порожденных стратегией \( \mathcal{U} \in U_{\mathcal{P}} \).
 
-В таком случае для функции \( \mathcal{V}(t,x) \) можно составить следующее уравнение 
- Гамильтона-Якоби-Беллмана-Айзекса:
+Для введенной функции \( \mathcal{V}(t,x) \) можно составить уравнение Гамильтона-Якоби-Беллмана-Айзекса:
 \begin{equation}\label{HJBI}
     \frac{\partial \mathcal{V}}{\partial t} + \min_u \max_v \left( \frac{\partial \mathcal{V}}
      {\partial x}, u + v \right) = 0, \quad u \in \mathcal{P}(t), \ v \in \mathcal{Q}(t),
@@ -399,15 +407,11 @@
 \begin{equation}\label{HJBI_boundary}
     \mathcal{V}(t_1, x) = d^2(x, \mathcal{M}).
 \end{equation}
-В общем случае подобное уравнение может не иметь классического решения и для его рассмотрения
- следует привлекать понятия обобщенных "вязкостных" или "минимаксных" решений. В данной работе
- функция цены \( \mathcal{V}(t,x) \) оказывается выпуклой или квазивыпуклой по \( x \). Поэтому
- решения соответствующих уравнений Гамильтона-Якоби-Беллмана-Айзекса, рассматриваемых здесь, не
- выходят за рамки вязкостных или даже классических решений.
 
-Перейдем к другой интерпретации функции цены \( \mathcal{V}(t,x) \). Рассмотрим интервал 
- \( \tau \le t \le t_1 \) и построим разбиение \( \Sigma_k = \{ \sigma_1, \dots, \sigma_k \} \),
- подобное рассмотренному в разделе 1. Для данного разбиения рассмотрим рекуррентные соотношения
+Аналогично введенным выше рекуррентным схемам построения альтернированных интегралов, 
+введем рекуррентную схему построения функций цены. Как и ранее рассмотрим интервал 
+ \( \tau \le t \le t_1 \) и построим его разбиение \( \Sigma_k = \{ \sigma_1, \dots, \sigma_k \} \).
+ Для этого разбиения рассмотрим соотношения:
 \begin{equation*}
     V_k^+(t_1 - \sigma_1, x) = \left\{ \max_v \min_u d^2(x(t_1), \mathcal{M}) \mid t_1 -
      \sigma_1 \le t \le t_1, \ x(t_1 - \sigma_1) = x \right\},
@@ -415,34 +419,31 @@
 \begin{multline*} 
     V_k^+(t_1 - \sigma_1 - \sigma_2, x) = \left\{ \max_v \min_u V_k^+(t_1 - \sigma_1, x(t_1 -
      \sigma_1)) \mid t_1 - \sigma_1 - \sigma_2 \le t \le t_1 - \sigma_1, \right. \\ 
-    x(t_1 - \sigma_1 - \sigma_2) = x \Big\},
+    x(t_1 - \sigma_1 - \sigma_2) = x \Big\}.
 \end{multline*}
-и так далее. Наконец в точке \( \tau = t_1 - \sum\limits_{i = 1}^k \sigma_i \):
+Продолжая процедуру, в точке \( \tau = t_1 - \sum\limits_{i = 1}^k \sigma_i \) получаем:
 \begin{equation*}
     V_k^+(\tau, x) = \left\{ \max_v \min_u V_k^+ (\tau + \sigma_k, x(\tau + \sigma_k)) \mid
      \tau \le t \le \tau + \sigma_k, \ x(\tau) = x \right\},
 \end{equation*}
-где \( v(t) \in \mathcal{Q}(t), u(t) \in  \mathcal{P}(t) \) почти всюду на соответствующих
- интервалах. Всюду предполагаем, что "максимины" существуют.
+Всюду будем предполагать, что "максимины" \ существуют.
+
+Оказывается, что для введенных таким образом функций, при неограниченном измельчении разбиения,
+ существуют поточечные пределы, то есть справедлива
 
 \begin{lemma}
     При
-    \[ 
-        \max_{i = 1,\dots,k} \{\sigma_i\}, \quad k \to \infty, \quad \sum_{i = 1}^k \sigma_i = 
+    \begin{equation*}
+        \max_{i = 1,\dots,k} \{\sigma_i\} \to 0, \quad k \to \infty, \quad \sum_{i = 1}^k \sigma_i = 
          t_1 - \tau, 
-    \]
+    \end{equation*}
     существует поточечный предел
-    \[
+    \begin{equation*}
         V^+(\tau, x) = \lim_{k \to \infty} V_k^+(\tau, x),
-    \]
-    не зависит от выбора разбиения \( \Sigma_k \).
+    \end{equation*}
+    не зависящий от выбора разбиения \( \Sigma_k \).
 \end{lemma}
-Будем называть \( V^+(\tau, x) \) \emph{последовательным максимином}. Обозначим
-\begin{equation}
-    V^+(\tau, x) = V^+(\tau, x \mid V^+(t_1, \cdot)), \quad V^+(t_1, x) \equiv d^2(x,
-     \mathcal{M}).
-\end{equation}
-Нетрудно заметить, что имеет место следующая
+Будем называть \( V^+(\tau, x) \) \emph{последовательным максимином}.
 \begin{lemma}
     Функция \( V^+(\tau, x) \) удовлетворяет полурупповому свойству
     \[
@@ -623,24 +624,23 @@
      \mathcal{E}(m, M).
 \end{equation*}
 Здесь функции \( p(t), q(t), P(t), Q(t) \) предполагаются заданными и непрерывными. Вектор \( m \) и
- матрица \( M \) фиксированы. Эллипосоиды задаются своим центром и матрицей следующим образом:
+ матрица \( M \) фиксированы. Эллипсоиды задаются своим центром и матрицей следующим образом:
  
 \begin{equation}
     \mathcal{E}(a, Q) = \left\{ x : (x - a, Q^{-1}(x - a)) \le 1 \right\}, \quad x \in \mathbb{R}^n,
 \end{equation}
 где \( Q > 0 \).
 
-Приведем для начала основные утверждения эллипсоидального исчисления, необходимые в дальнейшем. Все
- эти результаты подробно описаны в \cite{ellips_calculus}.
+Приведем для начала основные утверждения эллипсоидального исчисления, необходимые в дальнейшем. Подробнее 
+см. \cite{ellips_calculus} и \cite{reach_an_unc_sys}.
 
-\begin{theorem}
-    Пусть \( \mathcal{E}_1(a_1, Q_1), \mathcal{E}_2(a_2, Q_2) \) --- пара невырожденных эллисоидов.
-     Рассмотрим семейства матриц:
+\begin{theorem}\label{ellips_theorem}
+    Пусть \( \mathcal{E}_1(a_1, Q_1), \mathcal{E}_2(a_2, Q_2) \) --- пара невырожденных эллипсоидов. Рассмотрим
     \begin{itemize}
-        \item \( Q(p) \) --- параметрическое семейство матриц
+        \item семейство матриц \( Q[p] \):
         \begin{equation*}
             \begin{gathered}
-                Q(p) = (1 + p^{-1})Q_1 + (1 + p) Q_2,\\
+                Q[p] = (1 + p^{-1})Q_1 + (1 + p) Q_2,\\
                 p \in \Pi^+ = \left[ \lambda_{\mathrm{min}}^{1/2}, \lambda_{\mathrm{max}}^{1/2} 
                  \right]
             \end{gathered}
@@ -655,75 +655,42 @@
         \begin{equation*}
             \Pi^- = \Pi^+ \cap(1, \lambda_{\mathrm{min}})
         \end{equation*}
-        \item \( Q_+[S], Q_-[S] \) --- параметрические семейства матриц:
+        \item семейство матриц \( Q[S_1,S_2] \):
         \begin{equation*}
-            \begin{gathered}
-                Q_+[S] = S^{-1}[(S Q_1 S^T)^{1/2} + (S Q_2 S^T)^{1/2}]^2 {S^T}^{-1}, \\
-                Q_+[S] = S^{-1}[(S Q_1 S^T)^{1/2} - (S Q_2 S^T)^{1/2}]^2 {S^T}^{-1},
-            \end{gathered}
+            Q[S_1, S_2] = (S_1 Q_1^{1/2} + S_2 Q_2^{1/2})^T (S_1 Q_1^{1/2} + S_2 Q_2^{1/2}),
         \end{equation*}
         где
         \begin{equation*}
-            S \in \Sigma = {S \in \mathcal{L}(\mathbb{R}^n, \mathbb{R}^n): S^T = S, |S| \ne 0}.
+            S_1, S_2 \in \Sigma = \{ S \in \mathcal{L}(\mathbb{R}^n, \mathbb{R}^n): S^T S = S S^T = I \}.
         \end{equation*}
     \end{itemize}
     Для этих семейств справедливы следующие включения:
     \begin{equation}
-        \mathcal{E}_1 + \mathcal{E}_2 \subseteq \mathcal{E}(a_1 + a_2, Q(p)), \quad \forall p \in \Pi^+
+        \mathcal{E}_1 + \mathcal{E}_2 \supseteq \mathcal{E}(a_1 + a_2, Q[S_1, S_2]), \quad \forall S_1, S_2 \in \Sigma
     \end{equation}
     \begin{equation}
-        \mathcal{E}_1 + \mathcal{E}_2 \supseteq \mathcal{E}(a_1 + a_2, Q_+[S]), \quad \forall S \in \Sigma
-    \end{equation}
-    \begin{equation}
-        \mathcal{E}_1 \dot{-} \mathcal{E}_2 \subseteq \mathcal{E}(a_1 - a_2, Q_-[S]), \quad \forall S \in \Sigma
-    \end{equation}
-    \begin{equation}
-        \mathcal{E}_1 \dot{-} \mathcal{E}_2 \supseteq \mathcal{E}(a_1 - a_2, Q(-p)), \quad \forall p \in \Pi^-
-    \end{equation}
-    При этом имеют место следующие точные представления:
-    \begin{equation}
-        \mathcal{E}_1 + \mathcal{E}_2 = \bigcap \left\{ \mathcal{E}(a_1 + a_2, Q(p)), \forall p \in \Pi^+ \right\}
-    \end{equation}
-    \begin{equation}
-        \mathcal{E}_1 + \mathcal{E}_2 = \bigcup \left\{ \mathcal{E}(a_1 + a_2, Q_+[S]), \forall S \in \Sigma \right\}
-    \end{equation}
-    \begin{equation}
-        \mathcal{E}_1 \dot{-} \mathcal{E}_2 = \bigcap \left\{ \mathcal{E}(a_1 - a_2, Q_-[S]), \forall S \in \Sigma \right\}
-    \end{equation}
-    \begin{equation}
-        \mathcal{E}_1 \dot{-} \mathcal{E}_2 = \overline{ \bigcup \left\{ \mathcal{E}(a_1 - a_2, Q(-p)), \forall p \in \Pi^- \right\} }
+        \mathcal{E}_1 \dot{-} \mathcal{E}_2 \supseteq \mathcal{E}(a_1 - a_2, Q[-p]), \quad \forall p \in \Pi^-
     \end{equation}
 \end{theorem}
 
-Более того представляется возможным доказать следующее утверждение(См. \cite{ellips_calculus}), позволяющее
- строить наиболее "точные" внутренние и внешние оценки для суммы и разности двух эллипсоидов. 
+Более того, для некоторого фиксированного вектора \( l \) представляется возможным найти значения параметров
+\( p, S_1, S_2 \) такие, что для опорных функций суммы и разности эллипсоидов и их внутренних оценок справедливо
+равенство. Или иначе, внутренняя оценка касается суммы или разности эллипсоидов.
 
 \begin{theorem}
+    Для невырожденных эллипсоидов \( \mathcal{E}(a_1, Q_1), \mathcal{E}(a_2, Q_2) \) справедливо:
     \begin{itemize}
-        \item Пусть \( \mathcal{E}_1 + \mathcal{E}_2 \subseteq \mathcal{E} \), тогда существует значение
-         параметра \( p \in \Pi^+ \) такое, что
-        \begin{equation}
-            \mathcal{E}_1 + \mathcal{E}_2 \subseteq \mathcal{E}(a_1 + a_2, Q(p)) \subseteq \mathcal{E}.
-        \end{equation}
-        \item Пусть \( \mathcal{E}_1 + \mathcal{E}_2 \supseteq \mathcal{E} \), тогда существует матрица
-         \( S \in \Sigma \) такая, что
-        \begin{equation}
-            \mathcal{E}_1 + \mathcal{E}_2 \supseteq \mathcal{E}(a_1 + a_2, Q_+[S]) \supseteq \mathcal{E}.
-        \end{equation}
-        \item Пусть \(\mathrm{int}(\mathcal{E}_1 \dot{-} \mathcal{E}_2) \ne \varnothing \) и \( \mathcal{E}_1
-         \dot{-} \mathcal{E}_2 \supseteq \mathcal{E} \), тогда существует значение параметра \( p \in 
-         \Pi^- \) такое, что
-        \begin{equation}
-            \mathcal{E}_1 \dot{-} \mathcal{E}_2 \supseteq \mathcal{E}(a_1 - a_2, Q(-p)) \supseteq \mathcal{E}.
-        \end{equation}
-        \item Пусть \(\mathrm{int}(\mathcal{E}_1 \dot{-} \mathcal{E}_2) \ne \varnothing \) и \( \mathcal{E}_1
-         \dot{-} \mathcal{E}_2 \subseteq \mathcal{E} \), тогда существует матрица \( S \in  \Sigma \) 
-         такая, что
-        \begin{equation}
-            \mathcal{E}_1 \dot{-} \mathcal{E}_2 \subseteq \mathcal{E}(a_1 - a_2, Q_-[S]) \subseteq \mathcal{E}.
-        \end{equation}
+        \item Для любого вектора \( l \) существуют значения параметров \( S_1^*, S_2^* \in \Sigma \) такие, что
+        \begin{equation*}
+            \rho(l \mid \mathcal{E}(a_1, Q_1) + \mathcal{E}(a_2, Q_2)) = \rho(l \mid \mathcal{E}(a_1 + a_2, Q[S_1^*, S_2^*])),
+        \end{equation*}
+        \item Для всех "хороших" \ направлений \( l \) геометрической разности эллипсоидов существует значение \( p* \in \Pi^- \) такое, что
+        \begin{equation*}
+            \rho(l \mid \mathcal{E}(a_1, Q_1) \dot{-} \mathcal{E}(a_2, Q_2)) = \rho(l \mid \mathcal{E}(a_1 - a_2, Q[-p*])).
+        \end{equation*}
     \end{itemize}
 \end{theorem}
+
 
 Отправной точкой для построения оценок множества разрешимости является тот факт, что функция 
  \( \mathcal{W}[t] \) в условиях невырожденности предположения \eqref{assumption_nonempty} является 
@@ -743,28 +710,28 @@
 При этом мы будем заинтересованы именно во внутренних аппроксимациях множества разрешимости, так как
  построение управления по схеме описанной в следующем разделе, "удерживающее" траекторию внутри такой
  аппроксимации будет гарантировать попадание в целевое множество. Поэтому будем искать максимальное 
- по включению эллипсоидальное решение \eqref{evolution_equation}. В связи с этим справедлива следующая
+ по включению эллипсоидальное решение \eqref{evolution_equation}. Исходя из эволюционного уравнения будем
+ строить внутреннюю аппроксимацию, пользуясь формулами из теоремы \eqref{ellips_theorem}. В итоге приходим
+ к утверждению
 
 \begin{theorem}
     Эллипсоидозначная функция \( \mathcal{E}_-[t] = \mathcal{E}(x^*, X_-(t)) \), определяемая
      дифференциальными уравнениями:
     \begin{equation}\label{dif_center}
-        \dot{x^*} = p(t) + q(t),
+        \dot{x^*}(t) = p(t) + q(t),
     \end{equation}
     а также
     \begin{equation}\label{dif_matrix}
         \begin{gathered}
-            \dot{X_-} = \pi(t) X_- + \pi^{-1}(t) Q(t) - \\
-             - H^{-1}(t) [(H(t) P(t) H^T(t))^{1/2} (H(t) X_-(t) H^T(t))^{1/2} + \\
-             + (H(t) X_-(t) H^T(t))^{1/2}(H(t) P(t) H^T(t))^{1/2}] {H^T}^{-1}(t),
+            \dot{X_-}(t) = \pi(t) X_-(t) + \pi^{-1}(t) Q(t) - \\
+             - (X_-(t))^{1/2} H(t) (P(t))^{1/2} - (P(t))^{1/2} H^T(t) (X_-(t))^{1/2}
         \end{gathered}
     \end{equation}
     с краевыми условиями соответственно
-    \begin{equation*}\label{dif_boundary}
+    \begin{equation}\label{dif_boundary}
         x(t_1) = m, \quad X_-(t_1) = M.
-    \end{equation*}
-    является решением \eqref{evolution_equation}. Здесь функции \( \pi(t) > 0 \) и \( H(t) = H^T(t) > 0 \)
-     выступают в качестве параметров.
+    \end{equation}
+    является решением \eqref{evolution_equation}.
     
     При этом для любого вектора \( l \in \mathbb{R}^n \) сущетсвуют функции \( \pi(t), H(t) \) такие,
      что
@@ -816,7 +783,7 @@
     Здесь множитель лагранжа \( \lambda > 0 \) --- единственный корень уравнения \( f(\lambda) = 0 \),
     где
     \begin{equation*}
-        f(\lambda) = ((I + \lambda X^{-1})^{-1}(x - x^*), X^{-1}(I + \lambda X^{-1})^{-1}(x - x^*))^{-1} - 1.
+        f(\lambda) = ((I + \lambda X^{-1})^{-1}(x - x^*), X^{-1}(I + \lambda X^{-1})^{-1}(x - x^*)) - 1.
     \end{equation*}
 \end{lemma}
 
@@ -832,4 +799,256 @@
     есть вектор \( u^* = p - Pl(l, Pl)^{-1/2} \).
 \end{lemma}
 
-\section{Примеры построения внуренних оценок и гарантирующих стратегий}
+\section{Пример синтеза гарантирующего управления}
+
+\subsection{Пример 1}
+Будем рассматривать ту же систему
+\begin{equation*}
+    \dot{x} = u + v
+\end{equation*}
+с эллипсоидальными ограничениями:
+\begin{gather*}
+    \mathcal{M} = \mathcal{E}(m, M), \quad
+    m = \begin{bmatrix}
+        0 \\[0.3em]
+        0
+    \end{bmatrix}, \quad
+    M = \begin{bmatrix}
+        1 & 0 \\[0.3em]
+        0 & 1
+    \end{bmatrix}, \\
+    \mathcal{P} = \mathcal{E}(p, P), \quad
+    p = \begin{bmatrix}
+        0 \\[0.3em]
+        0
+    \end{bmatrix}, \quad
+    P = \begin{bmatrix}
+        2 & 0 \\[0.3em]
+        0 & 1
+    \end{bmatrix}, \\
+    \mathcal{Q} = \mathcal{E}(q, Q), \quad
+    q = \begin{bmatrix}
+        0 \\[0.3em]
+        0
+    \end{bmatrix}, \quad
+    Q = \begin{bmatrix}
+        1 & 0 \\[0.3em]
+        0 & 1
+    \end{bmatrix}. \\
+\end{gather*}
+Начальное условие для траекторий:
+\begin{equation*}
+    x_0 = \begin{bmatrix}
+        -0.3 \\[0.3em]
+        -0.3
+    \end{bmatrix}.
+\end{equation*}
+Помеху выберем например как
+\begin{equation*}
+    v(t) = \begin{bmatrix}
+        sin(t) \\[0.3em]
+        cos(t)
+    \end{bmatrix}.
+\end{equation*}
+
+
+Визуализируем полученную оценку для дискретной схемы (Рис. \eqref{fig:inner_tube}). 
+Построим график оценки и траектории. Траектория, упираясь в границу эллипсоидальной трубки,
+ идет по этой границе, так как генерирующееся управления стремится оставить её внутри
+ эллипсоидальной оценки. Как итог траектория приходит в целевое множество.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width = 0.9\linewidth]{"./resources/solv_tube.pdf"}
+	\caption{Внутренняя эллипсоидальная оценка для множества разрешимости и траектория системы.}
+    \label{fig:inner_tube}
+\end{figure}
+
+\subsection{Пример 2}
+\begin{equation*}
+    \dot{x}(t) = u(t) + v(t),
+\end{equation*}
+где на управление и помеху наложены эллипсоидальные ограничения:
+\begin{gather*}
+    \mathcal{M} = \mathcal{E}(m, M), \quad
+    m = \begin{bmatrix}
+        0 \\[0.3em]
+        0
+    \end{bmatrix}, \quad
+    M = \begin{bmatrix}
+        1 & 0 \\[0.3em]
+        0 & 1
+    \end{bmatrix}, \\
+    \mathcal{P}(t) = \mathcal{E}(p(t), P(t)), \quad
+    p(t) = \begin{bmatrix}
+        0 \\[0.3em]
+        0
+    \end{bmatrix}, \quad
+    P(t) = \begin{bmatrix}
+        sin(3t) + 2 & 0 \\[0.3em]
+        0 & sin(3t) + 2
+    \end{bmatrix}, \\
+    \mathcal{Q}(t) = \mathcal{E}(q(t), Q(t)), \quad
+    q(t) = \begin{bmatrix}
+        0 \\[0.3em]
+        0
+    \end{bmatrix}, \quad
+    Q(t) = \begin{bmatrix}
+        cos(3t) + 2 & 0 \\[0.3em]
+        0 & cos(3t) + 2
+    \end{bmatrix}. \\
+\end{gather*}
+Начальное условие для траекторий:
+\begin{equation*}
+    x_0 = \begin{bmatrix}
+        0 \\[0.3em]
+        0
+    \end{bmatrix}.
+\end{equation*}
+Помеху выберем например следующим образом:
+\begin{equation*}
+    v(t) = \begin{bmatrix}
+        sin(t) \\[0.3em]
+        cos(t)
+    \end{bmatrix}.
+\end{equation*}
+В этом примере ограничения на управление и помеху поочередно "доминируют" \ друг на другом, поэтому соответствующий альтернированный интеграл
+ с течением времени расширяется и сужается.
+
+\subsection{Особенности численного метода}
+
+Для численного решения задач и удобной визуализации будем использовать язык
+ Matlab. Из теоретической части ясно, что для задач с эллипсоидальными ограничениями
+ эллипсоидальные трубки разрешимости удовлетворяют дифференциальным уравнениям \eqref{dif_center}
+ и  \eqref{dif_matrix} с конечными условиями \eqref{dif_boundary}.
+Для решения подобных дифференциальных уравнений удобно пользоваться итерационными 
+ методами. Будем использовать классический метод Эйлера.
+Разобьем отрезок времени на \( n \) частей: \( t_0 < t_1 < t_2 < \dots < t_{n-1} < t_n \). 
+ Для каждого момента, начиная с \( t_n \), последовательно определим центр \( x^*(t_k) \) внутренней
+ эллипсоидальной трубки и матрицу \( X_-(t_k) \). 
+
+Важно отметить, что в \eqref{dif_matrix} в виде параметров присутствуют
+ функции \( \pi(t) > 0 \) и \( H(t) \). На каждом шаге
+ решения дифференциальных уравнений будем определять значения параметров, так, чтобы внутренняя оценка
+ касалась действительного множества разрешимости в некотором выбранном направлении \( l \).
+ Для этого будем выбирать ортогональную матрицу \( H(t) \) из соотношения
+\begin{equation*}
+    H(t)(P(t))^{1/2} l = \frac{\langle l, P(t) l \rangle^{1/2}}{\langle l, X_-(t) l \rangle^{1/2}} (X_-(t))^{1/2} l.
+\end{equation*}
+Такую матрицу можно найти с помощью сингулярного разложения векторов
+\begin{equation*}
+    v = (P(t))^{1/2} l, \quad w = \frac{\langle l, P(t) l \rangle^{1/2}}{\langle l, X_-(t) l \rangle^{1/2}} (X_-(t))^{1/2} l.
+\end{equation*}
+А значение \( \pi(t) \) как
+\begin{equation*}
+    \pi(t) = \frac{\langle l(t), Q(t) l(t) \rangle^{1/2}}{\langle l(t), X_-(t) l(t) \rangle^{1/2}}.
+\end{equation*}
+
+Отметим также, что гарантированно построить управление в задаче можно, если начальное положение
+ системы \( x(t_0) = x_0 \) принадлежит эллипсоиду \( \mathcal{E}(x^*(t_0), X_-(t_0)) \), 
+ поэтому это условие необходимо проверить. В таком случае для каждого момента времени \( t_k \), имея
+ центр \( x^*(t_k) \) и матрицу \( X_-(t_k) \) внутренней оценки, возможно по приведенной теоретической
+ схеме построить управление в точках введенной сетки.
+
+\begin{equation*}
+    u(t_k, x) = \begin{cases}
+        p(t_k), & \text{если} \ x \in \mathcal{E}(x^*(t_i), X_-(t_i)), \\
+        p(t_k) - P(t_k)l^0(l^0, P(t_k)l^0)^{-1/2}, & \text{если} \ x \notin \mathcal{E}(x^*(t_k), X_-(t_k)). 
+    \end{cases}
+\end{equation*}
+Вектор \( l^0 \) в соответствии с теоретической схемой может быть найден как:
+\begin{equation}
+    l^0 = \frac{x - s^0}{\| x - s^0 \|}, \quad s^0 = (I + \lambda X_-^{-1}(t_k))^{-1}(x - x^*(t_k)) + x^*(t_k).
+\end{equation}
+
+Остаётся найти значение множителя \( \lambda \), которое можно искать из уравнения \( f(\lambda) = 0 \), где
+\begin{equation*}
+    f(\lambda) = ((I + \lambda X_-^{-1}(t_k))^{-1}(x - x^*(t_k)), X_-^{-1}(t_k)(I + \lambda X_-^{-1}(t_k))^{-1}(x - x*(t_k))) - 1
+\end{equation*}
+
+Очевидно, что если \( x \notin \mathcal{E}(x^*(t_k), X_-(t_k)) \), тогда в точке \( \lambda = 0, \ f(0) > 0 \).
+При этом при \( \lambda \to \infty \) имеем
+\begin{equation}
+    ((I + \lambda Q^{-1})^{-1}x, Q^{-1}(I + \lambda Q^{-1})^{-1}x ) \to 0.
+\end{equation}
+А также \( f'(\lambda) < 0 \) при  \( \lambda > 0. \) Поэтому значение параметра можно искать итерационно среди 
+ \( \lambda > 0 \). 
+
+Траекторию системы таким образом также удобно строить итерационно, исходя из разностого уравнения
+
+\begin{equation*}
+    x(t_{k+1}) - x(t_k) = h(u(t_k, x(t_k)) + v(t_k)), \quad h = t_{k+1} - t_k,
+\end{equation*}
+корректируя управление в точках сетки.
+
+\section{Более общая задача}
+
+Рассмотрим исходную систему
+\begin{equation*}
+    \dot{x}(t) = A(t) x(t) + B(t) u(t) + C(t) v(t)
+\end{equation*}
+с эллипсоидальными ограничениями
+\begin{equation*}
+    u(t) \in \mathcal{E}(p(t), P(t)) \subset \mathbb{R}^p, \quad v(t) \in \mathcal{E}(q(t), Q(t)) \subset \mathbb{R}^q.
+\end{equation*}
+Пусть также задано некоторое эллипсоидальное целевое множество
+\begin{equation*}
+    \mathcal{M} = \mathcal{E}(m, M) \subset \mathbb{R}^n.
+\end{equation*}
+Будем строить гарантирующее управление, приводящее систему из некоторого положения 
+\( x_0 \) в момент времени \( t_0 \) в целевое множество \( \mathcal{M} \) в момент времени \( t_1 \). Как было отмечено в теоретической части,
+ исходная система заменой \( x(t) = G(t_1, t) x(t) \) приводится к виду
+\begin{equation*}
+    \dot{x}(t) = \hat{B}(t)u(t) + \hat{C}v(t), \quad t \in [t_0, t_1],
+\end{equation*}
+где 
+\begin{equation*}
+    \hat{B}(t) = G(t_1, t)B(t), \ \hat{C}(t) = G(t_1, t) C(t)
+\end{equation*}
+и
+\begin{equation*}
+    u(t) \in \mathcal{E}(p(t), P(t)), \ v(t) \in \mathcal{E}(q(t), Q(t)).
+\end{equation*}
+
+Для новой системы нужно перейти из состояния \( G(t_1, t_0) x_0 \) в целевое множество \( \mathcal{M} \), остающееся без изменений.
+
+Внутренняя эллипсоидальная оценка для системы такого вида может быть найдена из дифференциальных уравнений, которые строятся
+ аналогично \eqref{dif_center}, \eqref{dif_matrix}, с учетом того факта, что  \( A \mathcal{E}(q, Q) = \mathcal{E}(Aq, AQA^T) \).
+
+В итоге получаем уравнение на центр:
+\begin{equation*}\label{A_dif_center}
+    \dot{x}^*(t) = \hat{B}(t) p(t) + \hat{C}(t) q(t)
+\end{equation*}
+с начальным условием
+\begin{equation*}\label{A_dif_center_bound}
+    x^*(t_1) = m,
+\end{equation*}
+и на матрицу конфигурации:
+\begin{gather*}\label{A_dif_matrix}
+    \dot{X}_-(t) = \pi(t) X_-(t) + \pi^{-1}(t) \hat{C}(t) Q(t) \hat{C}^T(t) - (X_-(t))^{1/2} H(t) (\hat{B}(t) P(t) \hat{B}^T(t))^{1/2} - \\
+     - (\hat{B}(t) P(t) \hat{B}^T(t))^{1/2} H^T(t) (X_-(t))^{1/2}
+\end{gather*}
+с начальным условием
+\begin{equation*}\label{A_dif_matr_bound}
+    X_-(t_1) = M.
+\end{equation*}
+Для выполнения условия касания выберем
+\begin{equation*}
+    \pi(t) = \frac{\langle l(t), \hat{C}(t) Q(t) \hat{C}^T(t) l(t) \rangle^{1/2}}{\langle l(t), X_-(t) l(t) \rangle^{1/2}},
+\end{equation*}
+а ортогональную матрицу \( H(t) \) будем искать из соотношения
+\begin{equation*}
+    H(t)(\hat{B}(t) P(t) \hat{B}(t))^{1/2} l(t) = \frac{\langle l(t), \hat{B}(t) P(t) \hat{B}^T(t) l(t) \rangle^{1/2}}{\langle l(t), X_-(t) l(t) \rangle^{1/2}} (X_-(t))^{1/2} l(t).
+\end{equation*}
+
+Если в новых координатах найдена внутренняя эллипсоидальная аппроксимация \( \mathcal{E}_-[t] \) множества разрешимости \( \mathcal{W}[t] \), то
+управление может быть аналогично найдено в виде обратной связи
+\begin{equation*}
+    \mathcal{U}_-(t,x) = 
+     \begin{cases}
+        p(t), & \text{если} \ x \in \mathcal{E}_-[t], \\
+        p(t) - P(t)\hat{B}^T(t)l^0(\hat{B}^T(t)l^0, P(t)\hat{B}^T(t)l^0)^{-1/2}, & \text{если} \ x \notin \mathcal{E}_-[t],
+     \end{cases}
+\end{equation*}
+Строя с помощью такого управления траекторию новой системы и выполняя обратное преобразование, получаем 
+траекторию исходной системы.
