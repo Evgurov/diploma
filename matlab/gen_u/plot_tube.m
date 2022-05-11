@@ -24,7 +24,7 @@ function plot_tube(x0, v, p, P, q, Q, T, B, C)
     plot3(ax_2, x_op_second_proj(1, :), x_op_second_proj(2, :), x_op_second_proj(3, :), 'color', 'b', 'LineWidth', 2);
     hold(ax_1, 'on');
     hold(ax_2, 'on');
-    for i = 2 : 20 : length(T) - 1
+    for i = 2 : 10 : length(T) - 1
         x_op_first = [x_op(1, :, i); x_op(2, :, i)];
         x_op_second = [x_op(3, :, i); x_op(4, :, i)];
         x_op_first_proj = x_op_first(:, convhull(x_op_first'));
