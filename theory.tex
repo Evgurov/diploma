@@ -382,7 +382,7 @@
 Рассмотренный далее подход эллипсоидальных аппроксимаций позволяет избежать этой проблемы.
 
 \section{Функции цены}
-Применительно к данной задаче, рассмотрим подход к решению с помощью функций цены. Введем
+Рассмотрим подход к решению данной задачи с помощью функций цены. Введем
 
 \begin{equation*}
     \mathcal{V} = \min_{\mathcal{U}} \max_{x(\cdot)} \{\mathcal{I}(t,x) \mid \mathcal{U} \in 
@@ -409,7 +409,7 @@
 \end{equation}
 
 Аналогично введенным выше рекуррентным схемам построения альтернированных интегралов, 
-введем рекуррентную схему построения функций цены. Как и ранее рассмотрим интервал 
+введем рекуррентную схему построения функций цены. Как и ранее рассмотрим отрезок
  \( \tau \le t \le t_1 \) и построим его разбиение \( \Sigma_k = \{ \sigma_1, \dots, \sigma_k \} \).
  Для этого разбиения рассмотрим соотношения:
 \begin{equation*}
@@ -456,17 +456,14 @@
          \right\}, \quad \sigma > 0.
     \]
 \end{lemma}
-
-Отметим связь функции с альтернированным интегралом.
+Отметим связь последовательного максимина с альтернированным интегралом.
 \begin{lemma}
     Справедливо равенство
     \[
-        V^+ (\tau, x) = d^2(x, \mathcal{W}^*(\tau, t_1, \mathcal{M})),
+        V^+ (\tau, x) = d^2(x, \mathcal{I}(\tau, t_1, \mathcal{M})),
     \]
-    где \( \mathcal{W}^*[\tau] = \mathcal{W}^*(\tau, t_1, \mathcal{M}) = \mathcal{I}(\tau,
-     t_1, \mathcal{M}) \) --- значение альтернированного интеграла
 \end{lemma}
-Отюсда прямо следует
+Отюсда прямо следует следующий факт:
 \begin{lemma}
     Альтернированный инетграл \( \mathcal{I}(\tau, t_1, \mathcal{M}) \) совпадает с
      множеством уровня последовательного максимина \( V^+(\tau, x) \):
@@ -475,8 +472,8 @@
     \]
 \end{lemma}
 
-Теперь рассмотрим задачу аналогичную предыдущей. Для произвольного \( \Sigma_k \), построим
- рекуррентные соотношения 
+Теперь рассмотрим соотношения аналогичные введенным выше, изменяя порядок следования максимума и минимума.
+ Для произвольного \( \Sigma_k \), построим
 \begin{equation*}
     V_k^-(t_1 - \sigma_1, x) = \left\{ \min_u \max_v  d^2(x(t_1), \mathcal{M}) \mid t_1 -
      \sigma_1 \le t \le t_1, \ x(t_1 - \sigma_1) = x \right\},
@@ -504,30 +501,33 @@
     \]
     не зависит от выбора разбиения \( \Sigma_k \). \\
     2. Функция \( V^-(\tau, x) \) удовлетворяет полугрупповому свойству.
-    \begin{equation}
+    \begin{equation*}
         V^-(\tau, x \mid V^-(t_1, \cdot)) = V^-(\tau, x \mid V^-(t, \cdot \mid V^-(t_1, \cdot))).
-    \end{equation} \\
+    \end{equation*} \\
     3. Справедливо неравенство
-    \begin{equation}
+    \begin{equation*}
         V^-(t,x) \le \min_u \max_v \{ V^-(t + \sigma, x(t + \sigma)) \mid x(t) = x \}, 
          \quad \sigma > 0.
-    \end{equation}
+    \end{equation*}
 \end{lemma}
+Функцию \( V^-(t,x) \) по аналогии с \( V^+(t,x) \) будем называть \emph{последовательным минимаксом}.
+Подобно тому как альтернированный интеграл Понтрягина являлся множеством уровня последовательного максимина,
+альтернированный интеграл второго рода является множеством уровня последовательно минимакса. 
 
 
 \begin{lemma}
     Справедливы соотношения:
     \[
-        V^-(\tau, x) = d^2(x, \mathcal{W}_-(\tau, t_1, \mathcal{M})),
+        V^-(\tau, x) = d^2(x, \mathcal{I}_-(\tau, t_1, \mathcal{M})), \quad
         \mathcal{I}(\tau, t_1, \mathcal{M}) = \left\{ x : V^-(\tau, x) \le 0 \right\} 
     \]
 \end{lemma}
 
 \begin{lemma}
-    Многозначное отображение \( \mathcal{W}^-(t, t_1, \mathcal{M}) \) удовлетворяет полугрупповому
+    Многозначное отображение \( \mathcal{I}^-(t, t_1, \mathcal{M}) \) удовлетворяет полугрупповому
      свойству, а именно
     \[
-        \mathcal{W}_-(\tau, t_1, \mathcal{M}) = \mathcal{W}_-(\tau, t, \mathcal{W}_-(t, t_1,
+        \mathcal{I}_-(\tau, t_1, \mathcal{M}) = \mathcal{I}_-(\tau, t, \mathcal{I}_-(t, t_1,
          \mathcal{M})), \quad \tau \le t \le t_1.
     \]
 
@@ -535,7 +535,7 @@
 
 
 \section{Решение задачи синтеза}
-Суммируем основыне утверждения в виде следующей теоремы.
+Объеденим основные утверждения, описанные выше, в виде следующей теоремы.
 \begin{theorem}
     1. Последовательные максимин \( V^+(\tau, x) \) и минимакс \( V^-\) равны и совпадают с функцией
      цены \( \mathcal{V}(\tau,x) \):
@@ -544,14 +544,13 @@
     \]
     2. Множество разрешимости задачи допускает следющие эквивалентные представления:
     \[
-        \mathcal{I}(\tau, t_1, \mathcal{M}) = \mathcal{W}^*[\tau] = \{ x : \mathcal{V}(\tau \le 0 \},
+        \mathcal{I}(\tau, t_1, \mathcal{M}) = \mathcal{W}[\tau] = \{ x : \mathcal{V}(\tau \le 0 \},
          \quad t_0 \le \tau \le t_1.
     \]
     То есть, алтернированный интеграл Понтрягина \( \mathcal{I}(\tau, t_1, \mathcal{M}) \), сечение
-     моста Красовского \( \mathcal{W}[\tau] \) и множество уровня определенной нами функции
-     \( \mathcal{V}(\tau, x) \) суть одно и то же множество. 
+     моста Красовского \( \mathcal{W}[\tau] \) и множество уровня функции цены
+     \( \mathcal{V}(\tau, x) \) это одно и то же множество.
 \end{theorem}
-
 Кроме того, функция цены \( \mathcal{V}(\tau, x) \) обладает следующими свойствами.
 \begin{theorem}
     1. Справедлив принцип оптимальности
@@ -570,8 +569,8 @@
     с краевым условием \( \mathcal{V}(t_1, x) = h_+^2(x, \mathcal{M}) \).
 \end{theorem}
 
-Если решение \eqref{HJBI}, \eqref{HJBI_boundary} удается найти, то гарантирующая стратегия управления
- находится следубщим образом:
+В таком случае, если находится решение \eqref{HJBI}, \eqref{HJBI_boundary}, то гарантирующую стратегию можно
+ найти следующим образом:
 \begin{equation}
     \mathcal{U}_*(t,x) = \mathrm{argmin} \left\{ \left( \frac{\partial \mathcal{V}}{\partial x},
      u \right) : u \in \mathcal{P}(t) \right\},
@@ -596,13 +595,12 @@
 Таким образом синтезирующая стратегия \( \mathcal{U}_*(t,x) \) разрешает задачу целевого синтеза 
  управлений при неопределенности. Среди допустимых стратегий \( \mathcal{U}(t,x) \), удовлетворяющих
  включению \( \mathcal{U}(t,x) \subseteq \mathcal{U}_*(t,x) \), то есть обеспечивающих выполнение
- теоремы \eqref{dif_incl_theorem}, находится стратегия "экстремального прицеливания" , задаваемая
- условиями
+ теоремы \eqref{dif_incl_theorem}, находится стратегия "экстремального прицеливания":
 \begin{equation}
     \mathcal{U}_e(t,x) = \partial_l k(t, -l) = \mathrm{arg min} \{(l^0, u) \mid u \in \mathcal{P}(t) \}.
 \end{equation}
 Здесь \( \partial_l k \) --- субдифференциал функции \( k(t, l) \) по переменной \( l \), \( k(t,l)
- = \rho(l \mid \mathcal{P}(t)), l^0 = l^0(t, x) \ne 0 \) --- максимизатор задачи 
+ = \rho(l \mid \mathcal{P}(t)), \ l^0 = l^0(t, x) \ne 0 \) --- максимизатор задачи 
 \begin{equation}\label{extr_problem}
     h_+(x, \mathcal{W}[\tau]) = \max \{(l,x) - \rho(l \mid \mathcal{W}[\tau]) \mid (l,l) \le 1 \},
 \end{equation}
@@ -626,9 +624,9 @@
 Здесь функции \( p(t), q(t), P(t), Q(t) \) предполагаются заданными и непрерывными. Вектор \( m \) и
  матрица \( M \) фиксированы. Эллипсоиды задаются своим центром и матрицей следующим образом:
  
-\begin{equation}
+\begin{equation*}
     \mathcal{E}(a, Q) = \left\{ x : (x - a, Q^{-1}(x - a)) \le 1 \right\}, \quad x \in \mathbb{R}^n,
-\end{equation}
+\end{equation*}
 где \( Q > 0 \).
 
 Приведем для начала основные утверждения эллипсоидального исчисления, необходимые в дальнейшем. Подробнее 
@@ -665,12 +663,12 @@
         \end{equation*}
     \end{itemize}
     Для этих семейств справедливы следующие включения:
-    \begin{equation}
+    \begin{equation*}
         \mathcal{E}_1 + \mathcal{E}_2 \supseteq \mathcal{E}(a_1 + a_2, Q[S_1, S_2]), \quad \forall S_1, S_2 \in \Sigma
-    \end{equation}
-    \begin{equation}
+    \end{equation*}
+    \begin{equation*}
         \mathcal{E}_1 \dot{-} \mathcal{E}_2 \supseteq \mathcal{E}(a_1 - a_2, Q[-p]), \quad \forall p \in \Pi^-
-    \end{equation}
+    \end{equation*}
 \end{theorem}
 
 Более того, для некоторого фиксированного вектора \( l \) представляется возможным найти значения параметров
@@ -684,9 +682,9 @@
         \begin{equation*}
             \rho(l \mid \mathcal{E}(a_1, Q_1) + \mathcal{E}(a_2, Q_2)) = \rho(l \mid \mathcal{E}(a_1 + a_2, Q[S_1^*, S_2^*])),
         \end{equation*}
-        \item Для всех "хороших" \ направлений \( l \) геометрической разности эллипсоидов существует значение \( p* \in \Pi^- \) такое, что
+        \item Для всех "хороших" \ направлений \( l \) геометрической разности эллипсоидов существует значение \( p^* \in \Pi^- \) такое, что
         \begin{equation*}
-            \rho(l \mid \mathcal{E}(a_1, Q_1) \dot{-} \mathcal{E}(a_2, Q_2)) = \rho(l \mid \mathcal{E}(a_1 - a_2, Q[-p*])).
+            \rho(l \mid \mathcal{E}(a_1, Q_1) \dot{-} \mathcal{E}(a_2, Q_2)) = \rho(l \mid \mathcal{E}(a_1 - a_2, Q[-p^*])).
         \end{equation*}
     \end{itemize}
 \end{theorem}
@@ -708,7 +706,7 @@
 \end{theorem}
 
 При этом мы будем заинтересованы именно во внутренних аппроксимациях множества разрешимости, так как
- построение управления по схеме описанной в следующем разделе, "удерживающее" траекторию внутри такой
+ построение управления по схеме описанной в следующем разделе, "удерживающее" \ траекторию внутри такой
  аппроксимации будет гарантировать попадание в целевое множество. Поэтому будем искать максимальное 
  по включению эллипсоидальное решение \eqref{evolution_equation}. Исходя из эволюционного уравнения будем
  строить внутреннюю аппроксимацию, пользуясь формулами из теоремы \eqref{ellips_theorem}. В итоге приходим
@@ -733,11 +731,11 @@
     \end{equation}
     является решением \eqref{evolution_equation}.
     
-    При этом для любого вектора \( l \in \mathbb{R}^n \) сущетсвуют функции \( \pi(t), H(t) \) такие,
+    При этом для некоторых направлений \( l \in \mathbb{R}^n \) существуют функции \( \pi(t), H(t) \) такие,
      что
-    \begin{equation}
+    \begin{equation*}
         \rho(l \mid \mathcal{W}[t]) = \rho(l \mid \mathcal{E}(x^*, X_-(t | \pi(\cdot), H(\cdot))))
-    \end{equation}
+    \end{equation*}
     что означает, что построенный эллипсоид \( \mathcal{E} \) является максимальным по включению
      решением \eqref{evolution_equation}. 
 \end{theorem}
@@ -758,15 +756,15 @@
      \end{cases}
 \end{equation}
 где \( l^0 = l^0(t,x) \) --- единичный вектор, максимизатор задачи
-\begin{equation}
+\begin{equation*}
     h_+(x, \mathcal{E}_-[t]) = (l^0,x) - \rho(l^0 \mid \mathcal{E}_-[t]) = \max\{(l,x) - \rho(l \mid 
      \mathcal{E}_-[t]) \mid \| l \| \le 1 \}.
-\end{equation}
+\end{equation*}
 
 Последняя задача теперь может быть решена однозначно. Если 
-\begin{equation}
+\begin{equation*}
     s^0 = \text{argmin}\{ \| x - s \| : s \in \mathcal{E}_-[t], x = x(t) \},
-\end{equation}
+\end{equation*}
 то можно положить \( l^0 = k(x(t) - s^0), k > 0 \), так что вектор \( l^0 \) будет градиентом функции
 \( h_+(x, \mathcal{E}_-[t]) \) при фиксированном \( t \). 
 
@@ -777,9 +775,9 @@
         l^0 = \partial h_+(x, \mathcal{E}(x^*, X)) / \partial x
     \end{equation*}
     может быть выражен как 
-    \begin{equation}
+    \begin{equation*}
         l^0 = \frac{x - s^0}{\| x - s^0 \|}, \quad s^0 = (I + \lambda X^{-1})^{-1}(x - x^*) + x^*.
-    \end{equation}
+    \end{equation*}
     Здесь множитель лагранжа \( \lambda > 0 \) --- единственный корень уравнения \( f(\lambda) = 0 \),
     где
     \begin{equation*}
@@ -852,16 +850,16 @@
 \end{equation*}
 
 
-Визуализируем полученную оценку для дискретной схемы (Рис. \eqref{fig:inner_tube}). 
+Визуализируем полученную оценку для дискретной схемы (Рис. \eqref{fig:inner_tube_1}). 
 Построим график оценки и траектории. Траектория, упираясь в границу эллипсоидальной трубки,
  идет по этой границе, так как генерирующееся управления стремится оставить её внутри
  эллипсоидальной оценки. Как итог траектория приходит в целевое множество.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width = 0.9\linewidth]{"./resources/solv_tube.pdf"}
-	\caption{Внутренняя эллипсоидальная оценка для множества разрешимости и траектория системы.}
-    \label{fig:inner_tube}
+	\includegraphics[width = 0.6\linewidth]{"./resources/evolution_first_example_cropped.pdf"}
+	\caption{Внутренняя эллипсоидальная оценка в для множества разрешимости и траектория системы (Пример 1).}
+    \label{fig:inner_tube_1}
 \end{figure}
 
 \subsection{Пример 2}
@@ -914,6 +912,13 @@
 \end{equation*}
 В этом примере ограничения на управление и помеху поочередно "доминируют" \ друг на другом, поэтому соответствующий альтернированный интеграл
  с течением времени расширяется и сужается.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width = 0.5\linewidth]{"./resources/evolution_with_touch_3_cropped.pdf"}
+	\caption{Внутренняя эллипсоидальная оценка в для множества разрешимости и траектория системы (Пример 2).}
+    \label{fig:inner_tube_2}
+\end{figure}
 
 \subsection{Особенности численного метода}
 
@@ -1052,3 +1057,135 @@
 \end{equation*}
 Строя с помощью такого управления траекторию новой системы и выполняя обратное преобразование, получаем 
 траекторию исходной системы.
+
+\begin{section}{Пример}
+Для демонстрации вышеописанного метода рассмотрим простой пример системы двух независимых осцилляторов.
+
+\begin{gather*}
+    A = \begin{bmatrix}
+        0 & 1 & 0 & 0 \\[0.3em]
+        -1 & 0 & 0 & 0 \\[0.3em]
+        0 & 0 & 0 & 1 \\[0.3em]
+        0 & 0 & -4 & 0 
+    \end{bmatrix}, \quad
+    B = C = \begin{bmatrix}
+        1 & 0 & 0 & 0 \\[0.3em]
+        0 & 1 & 0 & 0 \\[0.3em]
+        0 & 0 & 1 & 0 \\[0.3em]
+        0 & 0 & 0 & 1 \\[0.3em]
+    \end{bmatrix}.
+\end{gather*}
+С целевым множеством 
+\begin{gather*}
+    \mathcal{M} = \mathcal{E}(m, M), \quad
+    m = \begin{bmatrix}
+        10 \\[0.3em]
+        0 \\[0.3em]
+        0 \\[0.3em]
+        10
+    \end{bmatrix}, \quad
+    M = \begin{bmatrix}
+        100 & 0 & 0 & 0 \\[0.3em]
+        0 & 100 & 0 & 0 \\[0.3em]
+        0 & 0 & 100 & 0 \\[0.3em]
+        0 & 0 & 0 & 100
+    \end{bmatrix}.
+\end{gather*}
+И ограничениями на управление и помеху:
+\begin{gather*}
+    \mathcal{P}(t) = \mathcal{E}(p(t), P(t)), \quad
+    p(t) = \begin{bmatrix}
+        0 \\[0.3em]
+        0 \\[0.3em]
+        0 \\[0.3em]
+        0
+    \end{bmatrix}, \quad
+    P(t) = \begin{bmatrix}
+        9 & 0 & 0 & 0 \\[0.3em]
+        0 & 1 & 0 & 0 \\[0.3em]
+        0 & 0 & 9 & 0 \\[0.3em]
+        0 & 0 & 0 & 1
+    \end{bmatrix}, \\
+    \mathcal{Q}(t) = \mathcal{E}(q(t), Q(t)), \quad
+    q(t) = \begin{bmatrix}
+        0 \\[0.3em]
+        0 \\[0.3em]
+        0 \\[0.3em]
+        0
+    \end{bmatrix}, \quad
+    Q(t) = \begin{bmatrix}
+        1 & 0 & 0 & 0 \\[0.3em]
+        0 & 9 & 0 & 0 \\[0.3em]
+        0 & 0 & 1 & 0 \\[0.3em]
+        0 & 0 & 0 & 9
+    \end{bmatrix}. \\
+\end{gather*}
+Начальное условие для траекторий зададим как
+\begin{equation*}
+    x_0 = \begin{bmatrix}
+        -6 \\[0.3em]
+        8 \\[0.3em]
+        2 \\[0.3em]
+        10
+    \end{bmatrix}.
+\end{equation*}
+Помеху выберем например следующим образом:
+\begin{equation*}
+    1. \
+    v_1(t) = \begin{bmatrix}
+        sin(t) \\[0.3em]
+        cos(t) \\[0.3em]
+        cos(t) \\[0.3em]
+        -8 \cdot sin(t) \\[0.3em]
+    \end{bmatrix}, \quad 
+    2. \
+    v_2(t) = \begin{bmatrix}
+        sin(t) \\[0.3em]
+        7 \cdot cos(t) \\[0.3em]
+        cos(t) \\[0.3em]
+        -8 \cdot sin(t) \\[0.3em]
+    \end{bmatrix},
+\end{equation*}
+В первом случае помеха сильнее влияет на второй осциллятор, а во втором --- одинаково на оба.
+Применяя схему предыдущего раздела, построим управления и траектории для каждой помехи.
+В первом случае заметно корректируется второй осциллятор, а во втором случае оба. В точках коррекции
+соответствующие траектории "упираются" \ в эллипсоидальную оценку.
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./resources/synthesis_1_first.pdf}
+        \caption{Проекция на координаты первого осциллятора.}
+        \label{subfig:synthesis_1_first}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./resources/synthesis_1_second.pdf}
+        \caption{Проекция на координаты второго осциллятора}
+        \label{subfig:synthesis_1_second}
+    \end{subfigure}
+    \caption{Иллюстрация траектории с коррекцией и целевого множества для первой помехи.}
+    \label{fig:synthesis_1}
+\end{figure}
+\end{section}
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./resources/synthesis_2_first.pdf}
+        \caption{Проекция на координаты первого осциллятора.}
+        \label{subfig:synthesis_2_first}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./resources/synthesis_2_second.pdf}
+        \caption{Проекция на координаты второго осциллятора}
+        \label{subfig:synthesis_2_second}
+    \end{subfigure}
+    \caption{Иллюстрация траектории с коррекцией и целевого множества для второй помехи.}
+    \label{fig:synthesis_2}
+\end{figure}
