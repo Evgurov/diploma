@@ -1,3 +1,11 @@
+\section{Введение}
+В данной работе рассматривается проблема гарантированного синтеза управлений, обеспечивающих попадание в некоторое желаемое 
+ "целевое" \ множество состояний, когда на систему действует неизвестная, но ограниченная помеха. Применительно к решению этой
+ задачи, рассматривается связь альтернированного интеграла Понтрягина и методов Гамильтонова формализма, основанных на уравнениях
+ Гамильтона-Якоби-Беллмана.
+ Отдельное внимание уделено технике эллипсоидального исчисления \cite{ellips_calculus}, позволяющей перейти от теоретического алгоритма 
+ к численно реализуемому методу синтеза.
+
 \section{Задача синтеза управлений при неопределенности}
 
 Рассмотрим систему
@@ -58,8 +66,8 @@
  \( v(t) \in \mathcal{Q}(t) \). То есть для данного целевого множества и 
  геометрических ограничений на управление и помеху необходимо найти трубку
  разрешимости, состоящую их всех состояний системы в различные моменты времени
- \( t \), для которых вне зависимости от помехи существовала бы некоторая 
- стратегия управления, приводящая систему в требуемое множество. Также 
+ \( t \), для которых вне зависимости от помехи существовало бы некоторое
+ управление, приводящее систему в требуемое множество. Также 
  для каждого такого состояния необходимо отыскать соответствующее целевое 
  управление. Очевидно, что задача имеет смысл в случае
  \( \mathcal{W}(\tau, t_1, \mathcal{M}) \ne \varnothing \).
@@ -72,7 +80,7 @@
 \section{Альтернированный интеграл Понтрягина}
 Для начала приведем исходную систему \eqref{problem} к более простому виду.
  Для этого сделаем невырожденную замену \( x(t) = G(t_1, t)x(t) \), где 
- \( G(t,t_1) \) --- фундаментальная матрица однородного уравнения 
+ \( G(t_1,t) \) --- фундаментальная матрица однородного уравнения 
  \eqref{problem}. В таком случае система примет вид:
 \begin{equation}\label{simplified_problem}
     \dot{x} = u + v,
@@ -180,6 +188,8 @@
     W(t, t + \sigma_k, W(t + \sigma_k, t + \sigma_k + \sigma_{k-1}, \dots, W(t_1 - \sigma_1, t_1,
     \mathcal{M}))) = \mathcal{I}(t, t_1, \mathcal{M}, \Sigma_k).
 \end{equation*}
+Такая последовательная схема реализует идеи построения программного управления с коррекцей.
+С измельчением разбиения возрастает число точек коррекции программного управления.
 Для корректного построения предполагается, что все возникающие здесь множества непусты. Это может 
  быть обеспечено следующим предположением:
 \begin{assumption}\label{assumption_nonempty}
@@ -199,11 +209,11 @@
 \end{assumption}
 
 Ниже всюду будем считать предположение \eqref{assumption_nonempty} выполненым. Отметим,
- что данное предположение важно и без него дальнейшие утверждения могут быть неверны.
+ что данное предположение непустоты важно и без него дальнейшие утверждения могут быть неверны.
 
 Следуя приведенной схеме, приходим к аналитическому выражению для "дискретного" \ множества
  разрешимости.
- 
+
 \begin{multline}\label{pontr_analytical}
     \mathcal{I}(t, t_1, \mathcal{M}, \Sigma_k) = \left( \dots \left( \left( \mathcal{M} + 
      \int\limits_{t_1 - \sigma_1}^{t_1} (-\mathcal{P}(\tau)) d\tau \right) \dot{-} \int\limits_
@@ -291,7 +301,7 @@
 дадим необходимое определение.
 
 \begin{definition}
-    Множество разрешимости \( W^-[\tau] \) минимаксоного типа называется следующая совокупность
+    Множество разрешимости \( W^-[\tau] \) минимаксного типа называется следующая совокупность
      векторов
     \begin{equation*}
         W_-[\tau] = W_-(\tau, t_1, \mathcal{M}) = \{ x : \min_u \max_v d^2(x(t_1),
@@ -327,7 +337,7 @@
     \left. + \int\limits_{t}^{t + \sigma_k} (-\mathcal{P}(\tau))) d\tau \right) .
 \end{multline}
 
-Здесь, как и прежде, предполгается, что возникающие множества не пусты. Для этого примем
+Здесь, как и прежде, предполагается, что возникающие множества не пусты. Для этого примем
 \begin{assumption}\label{assumption_nonempty_2}
     Для произвольного разбиения существует непрерывная функция \( g(t) : [t_0, t_1] \to \mathbb{R}^n \)
      и числа \( r_j \) такие, что
@@ -445,31 +455,32 @@
 \end{lemma}
 Будем называть \( V^+(\tau, x) \) \emph{последовательным максимином}.
 \begin{lemma}
-    Функция \( V^+(\tau, x) \) удовлетворяет полурупповому свойству
-    \[
+    Функция \( V^+(\tau, x) \) удовлетворяет полугрупповому свойству
+    \begin{equation*}
         V^+(\tau, x \mid V^+(t_1, \cdot)) = V^+(\tau, x \mid V^+(t, \cdot \mid V^+(t_1, 
          \cdot))).  
-    \]
+    \end{equation*}
     При этом справедливо неравенство
-    \[
+    \begin{equation*}
         V^+(t, x) \ge \left\{ \max_v \min_u V^+(t + \sigma, x(t + \sigma)) \mid x(t) = x 
          \right\}, \quad \sigma > 0.
-    \]
+    \end{equation*}
 \end{lemma}
-Отметим связь последовательного максимина с альтернированным интегралом.
+Важным свойством построенного последовательного максимина является его связь с альтернированным
+интегралом.
 \begin{lemma}
     Справедливо равенство
-    \[
+    \begin{equation*}
         V^+ (\tau, x) = d^2(x, \mathcal{I}(\tau, t_1, \mathcal{M})),
-    \]
+    \end{equation*}
 \end{lemma}
-Отюсда прямо следует следующий факт:
+Отсюда прямо следует следующий факт:
 \begin{lemma}
-    Альтернированный инетграл \( \mathcal{I}(\tau, t_1, \mathcal{M}) \) совпадает с
+    Альтернированный интеграл \( \mathcal{I}(\tau, t_1, \mathcal{M}) \) совпадает с
      множеством уровня последовательного максимина \( V^+(\tau, x) \):
-    \[
+    \begin{equation*}
         \mathcal{I}(\tau, t_1, \mathcal{M}) = \{ x : V^+(\tau, x) \le 0 \}.
-    \]
+    \end{equation*}
 \end{lemma}
 
 Теперь рассмотрим соотношения аналогичные введенным выше, изменяя порядок следования максимума и минимума.
@@ -483,22 +494,23 @@
      \sigma_1)) \mid t_1 - \sigma_1 - \sigma_2 \le t \le t_1 - \sigma_1, \right. \\ 
     x(t_1 - \sigma_1 - \sigma_2) = x \Big\},
 \end{multline*}
-и так далее. Наконец в точке \( \tau = t_1 - \sum\limits_{i = 1}^k \sigma_i \):
+и так далее. Наконец, в точке \( \tau = t_1 - \sum\limits_{i = 1}^k \sigma_i \):
 \begin{equation*}
     V_k^-(\tau, x) = \left\{ \min_u \max_v  V_k^- (\tau + \sigma_k, x(\tau + \sigma_k)) \mid
      \tau \le t \le \tau + \sigma_k, \ x(\tau) = x \right\}.
 \end{equation*}
-Для определенных таким образом функций имеют место аналогичные утверждения
+Для таких рекуррентных функций справедливы аналогичные утверждения. Перечислим их в виде следующей
+леммы.
 \begin{lemma}
     1. При
-    \[ 
+    \begin{equation*}
         \max_{i = 1,\dots,k} \{\sigma_i\}, \quad k \to \infty, \quad \sum_{i = 1}^k \sigma_i = 
          t_1 - \tau, 
-    \]
+    \end{equation*}
     существует поточечный предел
-    \[
+    \begin{equation*}
         V^-(\tau, x) = \lim_{k \to \infty} V_k^-(\tau, x),
-    \]
+    \end{equation*}
     не зависит от выбора разбиения \( \Sigma_k \). \\
     2. Функция \( V^-(\tau, x) \) удовлетворяет полугрупповому свойству.
     \begin{equation*}
@@ -539,14 +551,14 @@
 \begin{theorem}
     1. Последовательные максимин \( V^+(\tau, x) \) и минимакс \( V^-\) равны и совпадают с функцией
      цены \( \mathcal{V}(\tau,x) \):
-    \[
+    \begin{equation*}
         V^+(\tau, x) \equiv V^-(\tau, x) \equiv \mathcal{V}(\tau, x),
-    \]
-    2. Множество разрешимости задачи допускает следющие эквивалентные представления:
-    \[
+    \end{equation*}
+    2. Множество разрешимости задачи допускает следующие эквивалентные представления:
+    \begin{equation*}
         \mathcal{I}(\tau, t_1, \mathcal{M}) = \mathcal{W}[\tau] = \{ x : \mathcal{V}(\tau \le 0 \},
          \quad t_0 \le \tau \le t_1.
-    \]
+    \end{equation*}
     То есть, алтернированный интеграл Понтрягина \( \mathcal{I}(\tau, t_1, \mathcal{M}) \), сечение
      моста Красовского \( \mathcal{W}[\tau] \) и множество уровня функции цены
      \( \mathcal{V}(\tau, x) \) это одно и то же множество.
@@ -554,18 +566,18 @@
 Кроме того, функция цены \( \mathcal{V}(\tau, x) \) обладает следующими свойствами.
 \begin{theorem}
     1. Справедлив принцип оптимальности
-    \[
+    \begin{equation*}
         \mathcal{V}(\tau, x \mid \mathcal{V}(t_1, \cdot)) = \mathcal{V}(\tau, x \mid \mathcal{V}(t, 
          \cdot \mid \mathcal{V}(t_1, \cdot))), \quad \mathcal{V}(t_1, x) \equiv d^2(x, \mathcal{M}),
          \quad \tau \le t \le t_1. 
-    \]
+    \end{equation*}
     2. Если существует непрерывная частная производная \( \partial \rho(l \mid \mathcal{W}[t]) / 
-     \partial t, \forall l \in \mathbb{R}^n \), то фукнция \( \mathcal{V}(t, x) \) является 
+     \partial t, \forall l \in \mathbb{R}^n \), то функция \( \mathcal{V}(t, x) \) является 
      классическим решением уравнения Гамильтона-Якоби-Беллмана-Айзекса.
-    \[
+    \begin{equation*}
         \frac{\partial \mathcal{V}}{\partial t} + \min_u \max_v \left( \frac{\partial \mathcal{V}}
          {\partial x}, u + v \right) = 0
-    \]
+    \end{equation*}
     с краевым условием \( \mathcal{V}(t_1, x) = h_+^2(x, \mathcal{M}) \).
 \end{theorem}
 
@@ -858,7 +870,7 @@
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width = 0.6\linewidth]{"./resources/evolution_first_example_cropped.pdf"}
-	\caption{Внутренняя эллипсоидальная оценка в для множества разрешимости и траектория системы (Пример 1).}
+	\caption{Внутренняя эллипсоидальная оценка для множества разрешимости и траектория системы (Пример 1).}
     \label{fig:inner_tube_1}
 \end{figure}
 
@@ -916,7 +928,7 @@
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width = 0.5\linewidth]{"./resources/evolution_with_touch_3_cropped.pdf"}
-	\caption{Внутренняя эллипсоидальная оценка в для множества разрешимости и траектория системы (Пример 2).}
+	\caption{Внутренняя эллипсоидальная оценка для множества разрешимости и траектория системы (Пример 2).}
     \label{fig:inner_tube_2}
 \end{figure}
 
@@ -942,9 +954,17 @@
 \end{equation*}
 Такую матрицу можно найти с помощью сингулярного разложения векторов
 \begin{equation*}
-    v = (P(t))^{1/2} l, \quad w = \frac{\langle l, P(t) l \rangle^{1/2}}{\langle l, X_-(t) l \rangle^{1/2}} (X_-(t))^{1/2} l.
+    v(t) = (P(t))^{1/2} l, \quad w(t) = \frac{\langle l, P(t) l \rangle^{1/2}}{\langle l, X_-(t) l \rangle^{1/2}} (X_-(t))^{1/2} l
 \end{equation*}
-А значение \( \pi(t) \) как
+в виде
+\begin{equation*}
+    H(t) = V_{w(t)} V_{v(t)}^T,
+\end{equation*}
+где матрицы \( V_{w(t)}, \ V_{v(t)} \) получаются из сингулярного разложения векторов \( w(t), v(t) \):
+\begin{equation*}
+    v(t) = V_{v(t)} \Sigma_{v(t)} u_{v(t)}, \quad w(t) = V_{w(t)} \Sigma_{w(t)} u_{w(t)}.
+\end{equation*}
+Значение \( \pi(t) \) выберем как
 \begin{equation*}
     \pi(t) = \frac{\langle l(t), Q(t) l(t) \rangle^{1/2}}{\langle l(t), X_-(t) l(t) \rangle^{1/2}}.
 \end{equation*}
@@ -962,9 +982,9 @@
     \end{cases}
 \end{equation*}
 Вектор \( l^0 \) в соответствии с теоретической схемой может быть найден как:
-\begin{equation}
+\begin{equation*}
     l^0 = \frac{x - s^0}{\| x - s^0 \|}, \quad s^0 = (I + \lambda X_-^{-1}(t_k))^{-1}(x - x^*(t_k)) + x^*(t_k).
-\end{equation}
+\end{equation*}
 
 Остаётся найти значение множителя \( \lambda \), которое можно искать из уравнения \( f(\lambda) = 0 \), где
 \begin{equation*}
@@ -973,13 +993,13 @@
 
 Очевидно, что если \( x \notin \mathcal{E}(x^*(t_k), X_-(t_k)) \), тогда в точке \( \lambda = 0, \ f(0) > 0 \).
 При этом при \( \lambda \to \infty \) имеем
-\begin{equation}
+\begin{equation*}
     ((I + \lambda Q^{-1})^{-1}x, Q^{-1}(I + \lambda Q^{-1})^{-1}x ) \to 0.
-\end{equation}
+\end{equation*}
 А также \( f'(\lambda) < 0 \) при  \( \lambda > 0. \) Поэтому значение параметра можно искать итерационно среди 
  \( \lambda > 0 \). 
 
-Траекторию системы таким образом также удобно строить итерационно, исходя из разностого уравнения
+Траекторию системы таким образом также удобно строить итерационно, исходя из разностного уравнения
 
 \begin{equation*}
     x(t_{k+1}) - x(t_k) = h(u(t_k, x(t_k)) + v(t_k)), \quad h = t_{k+1} - t_k,
@@ -1085,13 +1105,14 @@
         10
     \end{bmatrix}, \quad
     M = \begin{bmatrix}
-        100 & 0 & 0 & 0 \\[0.3em]
-        0 & 100 & 0 & 0 \\[0.3em]
-        0 & 0 & 100 & 0 \\[0.3em]
-        0 & 0 & 0 & 100
+        0.1 & 0 & 0 & 0 \\[0.3em]
+        0 & 0.1 & 0 & 0 \\[0.3em]
+        0 & 0 & 0.1 & 0 \\[0.3em]
+        0 & 0 & 0 & 0.1
     \end{bmatrix}.
 \end{gather*}
-И ограничениями на управление и помеху:
+То есть будем пытаться привести систему в некую малую окрестность желаемого состояния.
+Зададим ограничения на управление и помеху:
 \begin{gather*}
     \mathcal{P}(t) = \mathcal{E}(p(t), P(t)), \quad
     p(t) = \begin{bmatrix}
@@ -1101,10 +1122,10 @@
         0
     \end{bmatrix}, \quad
     P(t) = \begin{bmatrix}
-        9 & 0 & 0 & 0 \\[0.3em]
-        0 & 1 & 0 & 0 \\[0.3em]
-        0 & 0 & 9 & 0 \\[0.3em]
-        0 & 0 & 0 & 1
+        4 & 0 & 0 & 0 \\[0.3em]
+        0 & 4 & 0 & 0 \\[0.3em]
+        0 & 0 & 4 & 0 \\[0.3em]
+        0 & 0 & 0 & 4
     \end{bmatrix}, \\
     \mathcal{Q}(t) = \mathcal{E}(q(t), Q(t)), \quad
     q(t) = \begin{bmatrix}
@@ -1115,54 +1136,56 @@
     \end{bmatrix}, \quad
     Q(t) = \begin{bmatrix}
         1 & 0 & 0 & 0 \\[0.3em]
-        0 & 9 & 0 & 0 \\[0.3em]
+        0 & 1 & 0 & 0 \\[0.3em]
         0 & 0 & 1 & 0 \\[0.3em]
-        0 & 0 & 0 & 9
+        0 & 0 & 0 & 1
     \end{bmatrix}. \\
 \end{gather*}
 Начальное условие для траекторий зададим как
 \begin{equation*}
     x_0 = \begin{bmatrix}
-        -6 \\[0.3em]
-        8 \\[0.3em]
-        2 \\[0.3em]
-        10
+        3 \\[0.3em]
+        -11 \\[0.3em]
+        3 \\[0.3em]
+        -10
     \end{bmatrix}.
 \end{equation*}
 Помеху выберем например следующим образом:
 \begin{equation*}
     1. \
     v_1(t) = \begin{bmatrix}
-        sin(t) \\[0.3em]
-        cos(t) \\[0.3em]
-        cos(t) \\[0.3em]
-        -8 \cdot sin(t) \\[0.3em]
+        0 \\[0.3em]
+        0 \\[0.3em]
+        0 \\[0.3em]
+        -1 \\[0.3em]
     \end{bmatrix}, \quad 
     2. \
     v_2(t) = \begin{bmatrix}
-        sin(t) \\[0.3em]
-        7 \cdot cos(t) \\[0.3em]
-        cos(t) \\[0.3em]
-        -8 \cdot sin(t) \\[0.3em]
+        0 \\[0.3em]
+        0 \\[0.3em]
+        0 \\[0.3em]
+        1 \\[0.3em]
     \end{bmatrix},
 \end{equation*}
-В первом случае помеха сильнее влияет на второй осциллятор, а во втором --- одинаково на оба.
-Применяя схему предыдущего раздела, построим управления и траектории для каждой помехи.
-В первом случае заметно корректируется второй осциллятор, а во втором случае оба. В точках коррекции
-соответствующие траектории "упираются" \ в эллипсоидальную оценку.
+Применяя схему предыдущего раздела, построим управления и траектории для такой системы.
+Сначала система находится внутри оценки и не нуждается в коррекции. Затем, в зависимости от помехи,
+система корректируется. В точках коррекции соответствующие траектории в новых координатах "упираются" \ 
+в эллипсоидальную оценку и генерирующееся управление возвращает их обратно. Как итог, в обоих случаях 
+система приходит в требуемое множество.
+
 
 \begin{figure}[ht]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{./resources/synthesis_1_first.pdf}
+        \includegraphics[width=\textwidth]{./resources/synthesis_8_first.pdf}
         \caption{Проекция на координаты первого осциллятора.}
         \label{subfig:synthesis_1_first}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{./resources/synthesis_1_second.pdf}
+        \includegraphics[width=\textwidth]{./resources/synthesis_8_second.pdf}
         \caption{Проекция на координаты второго осциллятора}
         \label{subfig:synthesis_1_second}
     \end{subfigure}
@@ -1171,21 +1194,34 @@
 \end{figure}
 \end{section}
 
+\newpage
+
 \begin{figure}[ht]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{./resources/synthesis_2_first.pdf}
+        \includegraphics[width=\textwidth]{./resources/synthesis_9_first.pdf}
         \caption{Проекция на координаты первого осциллятора.}
         \label{subfig:synthesis_2_first}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{./resources/synthesis_2_second.pdf}
+        \includegraphics[width=\textwidth]{./resources/synthesis_9_second.pdf}
         \caption{Проекция на координаты второго осциллятора}
         \label{subfig:synthesis_2_second}
     \end{subfigure}
     \caption{Иллюстрация траектории с коррекцией и целевого множества для второй помехи.}
     \label{fig:synthesis_2}
 \end{figure}
+
+\newpage
+
+\begin{section}{Заключение}
+    В работе рассмотрена проблема гарантированного синтеза управлений при неопределенности для линейных
+     систем, в случае когда на помеху наложены геометрические ограничения. Приведены основные утверждения теории,
+     связанные с данной задачей, а также рассмотрен алгоритм построения искомой
+     разрешающей стратегии. Рассмотрен переход к методу эллипсоидального исчисления, позволяющий строить управления
+     в явном виде, а также приведены примеры применения метода для разных
+     задач и ограничений на параметры. 
+\end{section}
